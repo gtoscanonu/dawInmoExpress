@@ -83,7 +83,12 @@
                                 <p>${vendedor.telefono}</p>
                                 <p>${vendedor.idVendedor}</p>
                                 <p>
-
+                                    <a href=" <spring:url value= '/vendedor/${vendedor.idVendedor}' /> " class="btn btn-primary">
+                                        <span class="glyphicon-info-sign glyphicon"/></span> Inmuebles
+                                    </a>
+                                    <a href=" <spring:url value= '/vendedores/${vendedor.idVendedor}/delete' /> " class="btn btn-primary">
+                                        <span class="glyphicon-info-sign glyphicon"/></span> Eliminar
+                                    </a>
                                 </p>
                             </div>
                         </div>

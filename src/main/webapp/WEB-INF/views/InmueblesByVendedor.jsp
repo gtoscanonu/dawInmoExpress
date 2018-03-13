@@ -92,6 +92,9 @@
                                     <a href=" <spring:url value= '/vendedor/${vendedor.idVendedor}/inmueble?idVivienda=${inmueble.idVivienda}' /> " class="btn btn-primary">
                                         <span class="glyphicon-info-sign glyphicon"/></span> Editar
                                     </a>
+                                     <a href=" <spring:url value= '${vendedor.idVendedor}/inmueble/delete?idVivienda=${inmueble.idVivienda}' /> " class="btn btn-primary">
+                                        <span class="glyphicon-info-sign glyphicon"/></span> Eliminar
+                                    </a>
                                 </p>
                             </div>
                         </div>

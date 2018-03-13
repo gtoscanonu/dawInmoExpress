@@ -66,7 +66,92 @@
             </div>
         </div>
         <section class="container">
-            <h1>Inmueble: ${formInmueble.tipo}</h1>
+            <h1>Añadir/Modificar Inmueble</h1>
+            <section class="container">
+            <form:form modelAttribute="formInmueble" class="form-horizontal" action="inmueble/add">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="tipo">
+                            Tipo Inmueble:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="tipo" path="tipo" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="precio">
+                            Precio:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="precio" path="precio" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="superficie">
+                            Superficie:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="superficie" path="superficie" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="ubicacion">
+                            Ubicación:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="ubicacion" path="ubicacion" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="numHabitaciones">
+                            Habitaciones:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="numHabitaciones" path="numHabitaciones" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="numBaños">
+                            Baños:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="numBaños" path="numBaños" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="extras">
+                            Extras:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="extras" path="extras" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                      <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="descripcion">
+                            Descripción:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="descripcion" path="descripcion" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="idVivienda">
+                            IdVivienda:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="idVivienda" path="idVivienda" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-offset-2 col-lg-10">
+                            <input type="submit" id="btnAdd" class="btn btn-primary"
+                                   value ="Desar"/>
+                        </div>
+                    </div>
+                    
+                </fieldset>
+            </form:form>
+        </section>
         </section>
     </body>
 </html>

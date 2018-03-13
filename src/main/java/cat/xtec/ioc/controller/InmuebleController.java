@@ -32,6 +32,7 @@ public class InmuebleController {
    // @Autowired
    // InmuebleService inmuebleService;
     
+    //INMUEBLES POR VENDEDOR
     @RequestMapping("/{idVendedor}")
     public ModelAndView allInmueblesByVendedor(@PathVariable("idVendedor") Integer idVendedor, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ModelAndView modelview = new ModelAndView("InmueblesByVendedor");
@@ -40,29 +41,36 @@ public class InmuebleController {
         return modelview;
     }
     
+    //INMUEBLE POR IDVIVIENDA
     @RequestMapping("/{idVendedor}/inmueble")
     public ModelAndView getInmuebleById(@RequestParam("idVivienda") Integer idVivienda, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException{
         ModelAndView modelview = new ModelAndView("inmueble");
         
-        //String myIdVivienda = request.getParameter("idVivienda");
         Inmueble formInmueble = null;
-       // if (idVivienda != null) {
             formInmueble = inmuebleService.getInmuebleById(idVivienda);
-       // }
-       
+
         modelview.getModelMap().addAttribute("formInmueble", formInmueble);
         return modelview;
         
     }
     
-    @RequestMapping(value ="inmueble/add", method = RequestMethod.POST)
-    public String processInmuebleForm(@ModelAttribute("formInmueble") Inmueble formInmueble, BindingResult result){
+    
+    @RequestMapping(value ="/{idVendedor}/inmueble/add", method = RequestMethod.POST)
+    public String processInmuebleForm(@ModelAttribute("formInmueble") Inmueble formInmueble, @PathVariable("idVendedor") Integer idVendedor , BindingResult result){
         inmuebleService.updateInmueble(formInmueble);
-        //String redireccion = "/vendedor/" + formInmueble.getIdVivienda();
-        return "redirect:/vendedores/all";
+        String redireccion = "redirect:/vendedor/" + idVendedor;
+        return redireccion;
+    }
+   
+    @RequestMapping("/{idVendedor}/inmueble/delete")
+    public String DeleteInmueble(@PathVariable("idVendedor") Integer idVendedor, @RequestParam("idVivienda") Integer idVivienda,  HttpServletRequest request, HttpServletResponse response){
+        Inmueble inmueble= inmuebleService.getInmuebleById(idVivienda);
+        System.out.println(inmueble.getSuperficie());
+        inmuebleService.deleteInmueble(inmueble);
+        String redireccion = "redirect:/vendedor/" + idVendedor;
+        return redireccion;
     }
     
-  
     
 }

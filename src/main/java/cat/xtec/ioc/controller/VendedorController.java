@@ -38,4 +38,12 @@ public class VendedorController {
         return modelview;
     }
     
+    @RequestMapping("{idVendedor}/delete")
+    public String DeleteVendedor(@PathVariable("idVendedor") Integer idVendedor, HttpServletRequest request, HttpServletResponse response){
+        Vendedor vendedor=vendedorDAOService.getVendedorByIdVendedor(idVendedor);
+        vendedorDAOService.deleteVendedor(vendedor);
+    return "redirect:/vendedores/all";
+    }
+    
+    
 }
