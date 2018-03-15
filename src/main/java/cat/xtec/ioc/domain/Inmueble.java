@@ -21,7 +21,6 @@ public class Inmueble implements Serializable {
     
     private static long serialVersionUID = 1L;
     @Id
-    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_vivienda")
     private Integer idVivienda;

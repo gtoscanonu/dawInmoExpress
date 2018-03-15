@@ -33,31 +33,10 @@
                                 </a>
                             </li>
                             <li role="presentation" class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                                    Nou dispositiu <span class="caret"></span>
+                                <a <a href="<spring:url value= 'inmueble/nuevoInmueble'/>">
+                                    Nuevo Inmueble
                                 </a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="<spring:url value= '/dispositius/dispositiu?codi=&tipus=Llum' />">
-                                            Llum
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<spring:url value= '/dispositius/dispositiu?codi=&tipus=Dimmer' />">
-                                            Dimmer
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<spring:url value= '/dispositius/dispositiu?codi=&tipus=Persiana' />">
-                                            Persiana
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="<spring:url value= '/dispositius/dispositiu?codi=&tipus=Tendal' />">
-                                            Tendal
-                                        </a>
-                                    </li>
-                                </ul>
+                                </a>
                             </li>
                         </ul>    
                     </nav>

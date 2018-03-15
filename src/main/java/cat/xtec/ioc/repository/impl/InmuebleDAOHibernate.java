@@ -61,9 +61,15 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
         getSession().merge(inmueble);
     }
     
-    @Override
-    public void deleteInmueble(Inmueble inmueble) {
-        getSession().delete(inmueble);
+   @Override
+    public void deleteInmueble(Inmueble inmueble, Integer idVendedor) {
+        Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
+        Set<Inmueble> inmuebles = vendedor.getInmuebles();
+        if (inmuebles != null){
+            inmuebles.remove(inmueble);
+            vendedor.setInmuebles(inmuebles);
+        } 
+        
     }
 
     protected Session getSession() {

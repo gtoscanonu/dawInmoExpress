@@ -20,5 +20,5 @@ public interface InmuebleDAORepository {
     
     void updateInmueble(Inmueble inmueble);
     
-    void deleteInmueble(Inmueble inmueble);
+    void deleteInmueble(Inmueble inmueble, Integer idVendedor);
 }

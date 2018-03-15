@@ -68,7 +68,7 @@
         <section class="container">
             <h1>Añadir/Modificar Inmueble</h1>
             <section class="container">
-            <form:form modelAttribute="formInmueble" class="form-horizontal" action="inmueble/add">
+            <form:form modelAttribute="formInmueble" class="form-horizontal" action="inmueble/update">
                 <fieldset>
                     <div class="form-group">
                         <label class="control-label col-lg-2 col-lg-2" for="tipo">
