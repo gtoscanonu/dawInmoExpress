@@ -33,7 +33,7 @@
                                 </a>
                             </li>
                             <li role="presentation" class="dropdown">
-                                <a <a href="<spring:url value= 'inmueble/nuevoInmueble'/>">
+                                <a <a href="<spring:url value= "${vendedor.getIdVendedor()}/inmueble/nuevoInmueble"/>">
                                     Nuevo Inmueble
                                 </a>
                                 </a>

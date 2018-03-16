@@ -44,7 +44,6 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
 
     @Override
     public void addInmueble(Inmueble inmueble, Integer idVendedor) {        
-       // getSession().saveOrUpdate(inmueble); No llegaremos a utilizar esta función habría que eliminarla
         Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
         Set<Inmueble> inmuebles = vendedor.getInmuebles();
         if (inmuebles != null){
@@ -65,10 +64,10 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
     public void deleteInmueble(Inmueble inmueble, Integer idVendedor) {
         Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
         Set<Inmueble> inmuebles = vendedor.getInmuebles();
-        if (inmuebles != null){
+    //    if (inmuebles != null){
             inmuebles.remove(inmueble);
             vendedor.setInmuebles(inmuebles);
-        } 
+    //    } 
         
     }
 

@@ -19,7 +19,7 @@ public class IndexController {
         Random rn = new Random();
         int imageCode = rn.nextInt(5) - 1;
         ModelAndView modelview = new ModelAndView("index");
-        modelview.getModelMap().addAttribute("benvinguda", "Benvingut a Control domòtic de l'habitatge");
+        modelview.getModelMap().addAttribute("benvinguda", "INMOExpress");
         modelview.getModelMap().addAttribute("imageCode", imageCode);
         return modelview;
     }
