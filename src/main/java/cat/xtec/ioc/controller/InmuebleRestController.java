@@ -60,7 +60,6 @@ public class InmuebleRestController {
         return new ResponseEntity<>(inmueble, HttpStatus.OK);
     }
    
-    
     //Eliminar inmueble
     @RequestMapping(value = ("/{idVivienda}"), method = RequestMethod.DELETE)
     public @ResponseBody
@@ -69,9 +68,6 @@ public class InmuebleRestController {
         this.inmuebleService.deleteInmueble(inmueble, idVendedor);
         return new ResponseEntity<>(inmueble, HttpStatus.OK);
      }
-    
-    
-    
 
     // Atributos de un inmueble
     @RequestMapping(value = ("/{idVivienda}"), method =  RequestMethod.GET)
