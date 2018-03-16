@@ -68,7 +68,7 @@
                                 <p>Descripción: ${inmueble.descripcion}</p>
                                 <p>Id_Vivienda: ${inmueble.idVivienda}</p>
                                 <p>
-                                    <a href=" <spring:url value= '/vendedor/${vendedor.idVendedor}/inmueble?idVivienda=${inmueble.idVivienda}' /> " class="btn btn-primary">
+                                    <a href=" <spring:url value= '/vendedorView/${vendedor.idVendedor}/inmueble?idVivienda=${inmueble.idVivienda}' /> " class="btn btn-primary">
                                         <span class="glyphicon-info-sign glyphicon"/></span> Editar
                                     </a>
                                      <a href=" <spring:url value= '${vendedor.idVendedor}/inmueble/delete?idVivienda=${inmueble.idVivienda}' /> " class="btn btn-primary">

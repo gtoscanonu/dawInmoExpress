@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/vendedor")
+@RequestMapping("/vendedorView")
 public class InmuebleController {
     
     @Autowired
@@ -60,7 +60,7 @@ public class InmuebleController {
     @RequestMapping(value ="/{idVendedor}/inmueble/update", method = RequestMethod.POST)
     public String processInmuebleForm(@ModelAttribute("formInmueble") Inmueble formInmueble, @PathVariable("idVendedor") Integer idVendedor , BindingResult result){
         inmuebleService.updateInmueble(formInmueble);
-        String redireccion = "redirect:/vendedor/" + idVendedor;
+        String redireccion = "redirect:/vendedorView/" + idVendedor;
         return redireccion;
     }
    
@@ -86,7 +86,7 @@ public class InmuebleController {
         
         
         
-        String redireccion = "redirect:/vendedor/" + idVendedor;
+        String redireccion = "redirect:/vendedorView/" + idVendedor;
         return redireccion;
     }
     
@@ -110,7 +110,7 @@ public class InmuebleController {
         Vendedor vendedor = vendedorDAOService.getVendedorByIdVendedor(idVendedor);
         Inmueble inmueble = new Inmueble();
         inmuebleService.addInmueble(newInmueble, vendedor.getIdVendedor());
-        String redireccion = "redirect:/vendedor/" + idVendedor;
+        String redireccion = "redirect:/vendedorView/" + idVendedor;
         return redireccion;
         
     }

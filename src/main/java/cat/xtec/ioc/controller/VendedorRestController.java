@@ -2,19 +2,13 @@ package cat.xtec.ioc.controller;
 
 import cat.xtec.ioc.domain.*;
 import cat.xtec.ioc.repository.InmuebleDAORepository;
-import cat.xtec.ioc.repository.VendedorDAORepository;
 import cat.xtec.ioc.service.VendedorDAOService;
-import java.io.IOException;
 import java.util.List;
 import java.util.Set;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +21,7 @@ import org.springframework.http.HttpStatus;
 
 
 @Controller
-@RequestMapping("/vendedoresRest")
+@RequestMapping("/vendedor")
 public class VendedorRestController {
 
     @Autowired
@@ -52,7 +46,7 @@ public class VendedorRestController {
     }
     
     // crear vendedor
-    //curl -H "Content-Type: application/json" -X POST -d "{\"nombre\":\"vendedor\",\"email\":\"inmobiliaria1@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawm07eac4domotic/vendedoresRest/nuevoVendedor
+    //curl -H "Content-Type: application/json" -X POST -d "{\"nombre\":\"vendedor\",\"email\":\"inmobiliaria1@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawm07eac4domotic/vendedor/nuevoVendedor
     @RequestMapping(value = ("/nuevoVendedor"), method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<Vendedor> createVendedor(@RequestBody Vendedor vendedor){
@@ -61,17 +55,18 @@ public class VendedorRestController {
     
     }
     
-    // Actualizar Vendedor Np funciona
-    //curl -H "Content-Type: application/json" -X PUT -d "{\"nombre\":\"vendedorPrueba\",\"email\":\"inmo@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawm07eac4domotic/vendedoresRest/14
+    // Actualizar Vendedor
+    //curl -H "Content-Type: application/json" -X PUT -d "{\"nombre\":\"vendedorPrueba\",\"email\":\"inmo@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawm07eac4domotic/vendedor/14
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.PUT)
     public @ResponseBody
-    ResponseEntity<Vendedor> updateVendedor(@PathVariable("idVendedor") Integer idVendedor){
-        Vendedor vendedor = vendedorDAOService.getVendedorByIdVendedor(idVendedor);
+    ResponseEntity<Vendedor> updateVendedor(@PathVariable("idVendedor") Integer idVendedor,@RequestBody Vendedor vendedor){
+        vendedor.setIdVendedor(idVendedor);
         this.vendedorDAOService.updateVendedor(vendedor);
         return new ResponseEntity<>(vendedor, HttpStatus.OK);
     }
     
     // Eliminar Vendedor
+    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawm07eac4domotic/vendedoresRest/6
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.DELETE)
     public @ResponseBody
      ResponseEntity<Vendedor> deleteVendedor(@PathVariable("idVendedor") Integer idVendedor){
@@ -80,28 +75,10 @@ public class VendedorRestController {
         return new ResponseEntity<>(vendedor, HttpStatus.OK);
      }
      
-    
-    
     // atributos de 1 vendedor
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.GET)
     public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor){
         return this.vendedorDAOService.getVendedorByIdVendedor(idVendedor);
     }
     
-    // Todos los inmuebles de un vendedor
-    @RequestMapping(value = ("/{idVendedor}/inmuebles"), method =  RequestMethod.GET)
-    public @ResponseBody Set<Inmueble> getAllInmueblesByVendedor(@PathVariable("idVendedor") Integer idVendedor){
-        return this.inmuebleService.getAllInmuebles(idVendedor);
-    }
-    
-    // Atributos de un inmueble
-    @RequestMapping(value = ("/{idVendedor}/{idVivienda}"), method =  RequestMethod.GET)
-    public @ResponseBody Inmueble getInmuebleById(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda){
-        return this.inmuebleService.getInmuebleById(idVivienda);
-    }
-
-    // 
-
-
-
 }
