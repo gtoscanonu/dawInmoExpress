@@ -12,7 +12,7 @@ public interface InmuebleDAORepository {
     
     Inmueble getInmuebleById(Integer id_vivienda);
     
-    Set<Inmueble> getAllInmuebles(Integer idVendedor);
+    Set<Inmueble> getAllInmueblesByVendedor(Integer idVendedor);
     
     List<Inmueble> getInmueblesByTipus(String tipo);
     

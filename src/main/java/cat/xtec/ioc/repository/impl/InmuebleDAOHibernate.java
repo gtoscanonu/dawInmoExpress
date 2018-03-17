@@ -32,7 +32,7 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
     }
 
     @Override
-    public Set<Inmueble> getAllInmuebles(Integer idVendedor) {
+    public Set<Inmueble> getAllInmueblesByVendedor(Integer idVendedor) {
        Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
         return vendedor.getInmuebles();
     }

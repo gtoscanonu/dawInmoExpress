@@ -38,7 +38,7 @@ public class InmuebleController {
     @RequestMapping("/{idVendedor}")
     public ModelAndView allInmueblesByVendedor(@PathVariable("idVendedor") Integer idVendedor, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ModelAndView modelview = new ModelAndView("InmueblesByVendedor");
-        modelview.getModelMap().addAttribute("inmuebles", inmuebleService.getAllInmuebles(idVendedor));
+        modelview.getModelMap().addAttribute("inmuebles", inmuebleService.getAllInmueblesByVendedor(idVendedor));
         modelview.getModelMap().addAttribute("vendedor", vendedorDAOService.getVendedorByIdVendedor(idVendedor));
         return modelview;
     }

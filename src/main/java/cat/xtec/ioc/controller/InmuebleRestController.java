@@ -36,7 +36,7 @@ public class InmuebleRestController {
     // Todos los inmuebles de un vendedor
     @RequestMapping(value = ("/inmuebles"), method =  RequestMethod.GET)
     public @ResponseBody Set<Inmueble> getAllInmueblesByVendedor(@PathVariable("idVendedor") Integer idVendedor){
-        return this.inmuebleService.getAllInmuebles(idVendedor);
+        return this.inmuebleService.getAllInmueblesByVendedor(idVendedor);
     }
  
     //Crear Inmueble
