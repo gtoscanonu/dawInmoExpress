@@ -16,6 +16,8 @@ public interface InmuebleDAORepository {
     
     List<Inmueble> getInmueblesByTipus(String tipo);
     
+    List<Inmueble> getAllInmuebles();
+    
     void addInmueble(Inmueble inmueble, Integer idVendedor);
     
     void updateInmueble(Inmueble inmueble);

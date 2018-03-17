@@ -4,6 +4,7 @@ import cat.xtec.ioc.domain.Inmueble;
 import cat.xtec.ioc.domain.Vendedor;
 import cat.xtec.ioc.repository.InmuebleDAORepository;
 import cat.xtec.ioc.repository.VendedorDAORepository;
+import java.util.ArrayList;
 import java.util.HashSet;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -70,7 +71,26 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
     //    } 
         
     }
-
+    
+    @Override 
+    public List<Inmueble> getAllInmuebles(){
+        List<Inmueble> allInmuebles = new ArrayList<Inmueble>();
+     
+          List<Vendedor> vendedores = vendedorDAORepository.getAllVendedor();
+                    
+          for (Vendedor vendedor : vendedores ){
+              Set<Inmueble> inmuebles = vendedor.getInmuebles();
+              
+              for (Inmueble inmueble : inmuebles){
+                  allInmuebles.add(inmueble);
+              }
+         }
+        
+        return allInmuebles;
+    
+    }
+    
+    
     protected Session getSession() {
         return sessionFactory.getCurrentSession();
     }
