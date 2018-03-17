@@ -68,12 +68,5 @@ public class InmuebleRestController {
         this.inmuebleService.deleteInmueble(inmueble, idVendedor);
         return new ResponseEntity<>(inmueble, HttpStatus.OK);
      }
-
-    // Atributos de un inmueble
-    @RequestMapping(value = ("/{idVivienda}"), method =  RequestMethod.GET)
-    public @ResponseBody Inmueble getInmuebleById(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda){
-        return this.inmuebleService.getInmuebleById(idVivienda);
-    }
-    
-    
+       
 }
