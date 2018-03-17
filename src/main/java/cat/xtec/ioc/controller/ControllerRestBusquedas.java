@@ -38,4 +38,10 @@ public class ControllerRestBusquedas {
         return this.inmuebleService.getAllInmuebles();
     }
     
+    // Atributos de un inmueble
+    @RequestMapping(value = ("/{idVivienda}"), method =  RequestMethod.GET)
+    public @ResponseBody Inmueble getInmuebleById(@PathVariable("idVivienda") Integer idVivienda){
+        return this.inmuebleService.getInmuebleById(idVivienda);
+    }
+    
 }
