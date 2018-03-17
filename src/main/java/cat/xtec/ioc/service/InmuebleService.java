@@ -12,9 +12,11 @@ public interface InmuebleService {
     
      Inmueble getInmuebleById(Integer id_vivienda);
     
-    Set<Inmueble> getAllInmuebles(Integer idVendedor);
+    Set<Inmueble> getAllInmueblesByVendedor(Integer idVendedor);
     
     List<Inmueble> getInmueblesByTipus(String tipo);
+    
+    List<Inmueble> getAllInmuebles();
     
     void addInmueble(Inmueble inmueble, Integer idVendedor);
     

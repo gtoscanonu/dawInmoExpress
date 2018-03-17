@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/vendedor/{idVendedor}")
 public class InmuebleRestController {
     
-     @Autowired
+    @Autowired
     VendedorDAOService vendedorDAOService;
     
     @Autowired

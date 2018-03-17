@@ -32,9 +32,14 @@ public class InmuebleServiceImpl implements InmuebleService {
     }
 
     @Override
-    public Set<Inmueble> getAllInmuebles(Integer idVendedor) {
+    public Set<Inmueble> getAllInmueblesByVendedor(Integer idVendedor) {
         Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
         return vendedor.getInmuebles();
+    }
+    
+    @Override
+    public List<Inmueble> getAllInmuebles() {
+        return inmuebleDAORepository.getAllInmuebles();
     }
 
     @Override
