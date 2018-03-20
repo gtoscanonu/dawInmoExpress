@@ -47,9 +47,9 @@ public class Inmueble implements Serializable {
     @NotNull
     private int numHabitaciones;
     
-    @Column(name = "numBaños")
+    @Column(name = "numBanios")
     @NotNull
-    private int numBaños;
+    private int numBanios;
     
     @Column(name = "Extras")
     @Size(max=100)
@@ -58,18 +58,23 @@ public class Inmueble implements Serializable {
     @Column(name = "Descripcion")
     @Size(max = 100)
     private String descripcion;
+    
+    @Column(name = "imagen")
+    @Size(max = 250)
+    private String imagen;
 
     public Inmueble(){};
 
-    public Inmueble(Integer idVivienda, String tipo, String ubicacion, float superficie, float precio, int numHabitaciones, int numBaños, Boolean amueblado, String extras, String descripcion){
+    public Inmueble(Integer idVivienda, String tipo, String ubicacion, float superficie, float precio, int numHabitaciones, int numBanios, Boolean amueblado, String extras, String descripcion, String imagen){
         this.idVivienda=idVivienda;
         this.tipo=tipo;
         this.ubicacion=ubicacion;
         this.precio=precio;
         this.numHabitaciones=numHabitaciones;
-        this.numBaños=numBaños;
+        this.numBanios=numBanios;
         this.extras=extras;
         this.descripcion=descripcion;
+        this.imagen= imagen;
 }
 
     /**
@@ -173,15 +178,15 @@ public class Inmueble implements Serializable {
     /**
      * @return the numBaños
      */
-    public int getNumBaños() {
-        return numBaños;
+    public int getNumBanios() {
+        return numBanios;
     }
 
     /**
      * @param numBaños the numBaños to set
      */
-    public void setNumBaños(int numBaños) {
-        this.numBaños = numBaños;
+    public void setNumBanios(int numBanios) {
+        this.numBanios = numBanios;
     }
 
     /**
@@ -210,6 +215,20 @@ public class Inmueble implements Serializable {
      */
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+  
+    /**
+     * @return the imagen
+     */
+    public String getImagen() {
+        return imagen;
+    }
+
+    /**
+     * @param imagen the imagen to set
+     */
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
 }
