@@ -32,7 +32,7 @@
             </div>
         </section>
         <section class="container">
-            <form:form modelAttribute="newInmueble" class="form-horizontal" action="add" >
+            <form:form modelAttribute="newInmueble" class="form-horizontal" action="add" enctype="multipart/form-data"> <!--modelAttribute="newInmueble"-->
                 <fieldset>
                     <div class="form-group">
                         <label class="control-label col-lg-2 col-lg-2" for="tipo">
@@ -75,11 +75,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-2 col-lg-2" for="numBaños">
+                        <label class="control-label col-lg-2 col-lg-2" for="numBanios">
                             Baños:
                         </label>
                         <div class="col-lg-10">
-                            <form:input id="numBaños" path="numBaños" type="text" class="form:input-large"/>
+                            <form:input id="numBanios" path="numBanios" type="text" class="form:input-large"/>
                         </div>
                     </div>
                     <div class="form-group">
@@ -96,6 +96,15 @@
                         </label>
                         <div class="col-lg-10">
                             <form:input id="descripcion" path="descripcion" type="text" class="form:input-large"/>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="imagen">
+                           Imagen2:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="imagen" path="imagen" type="file" name="file" class="file"/>
                         </div>
                     </div>
                     <div class="form-group">

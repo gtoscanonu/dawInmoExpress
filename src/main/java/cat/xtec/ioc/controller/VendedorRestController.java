@@ -65,7 +65,7 @@ public class VendedorRestController {
     }
     
     // Eliminar Vendedor
-    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawm07eac4domotic/vendedoresRest/6
+    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawm07eac4domotic/vendedor/6
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.DELETE)
     public @ResponseBody
      ResponseEntity<Vendedor> deleteVendedor(@PathVariable("idVendedor") Integer idVendedor){

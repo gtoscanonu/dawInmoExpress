@@ -63,10 +63,11 @@
                                 <p>Superficie: ${inmueble.superficie}</p>
                                 <p>Ubicación: ${inmueble.ubicacion}</p>
                                 <p>Número de Habitaciones: ${inmueble.numHabitaciones}</p>
-                                <p>Número de Baños: ${inmueble.numBaños}</p>
+                                <p>Número de Banios: ${inmueble.numBanios}</p>
                                 <p>Extras: ${inmueble.extras}</p>
                                 <p>Descripción: ${inmueble.descripcion}</p>
                                 <p>Id_Vivienda: ${inmueble.idVivienda}</p>
+                                <p>Imagen: ${inmueble.imagen}</p>
                                 <p>
                                     <a href=" <spring:url value= '/vendedorView/${vendedor.idVendedor}/inmueble?idVivienda=${inmueble.idVivienda}' /> " class="btn btn-primary">
                                         <span class="glyphicon-info-sign glyphicon"/></span> Editar

@@ -111,11 +111,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-lg-2 col-lg-2" for="numBaños">
+                        <label class="control-label col-lg-2 col-lg-2" for="numBanios">
                             Baños:
                         </label>
                         <div class="col-lg-10">
-                            <form:input id="numBaños" path="numBaños" type="text" class="form:input-large"/>
+                            <form:input id="numBanios" path="numBanios" type="text" class="form:input-large"/>
                         </div>
                     </div>
                     <div class="form-group">

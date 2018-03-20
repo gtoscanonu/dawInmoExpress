@@ -65,11 +65,9 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
     public void deleteInmueble(Inmueble inmueble, Integer idVendedor) {
         Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
         Set<Inmueble> inmuebles = vendedor.getInmuebles();
-    //    if (inmuebles != null){
             inmuebles.remove(inmueble);
             vendedor.setInmuebles(inmuebles);
-    //    } 
-        
+            vendedorDAORepository.updateVendedor(vendedor);        
     }
     
     @Override 
@@ -77,7 +75,7 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
         List<Inmueble> allInmuebles = new ArrayList<Inmueble>();
      
           List<Vendedor> vendedores = vendedorDAORepository.getAllVendedor();
-                    
+          
           for (Vendedor vendedor : vendedores ){
               Set<Inmueble> inmuebles = vendedor.getInmuebles();
               
