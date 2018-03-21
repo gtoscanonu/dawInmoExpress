@@ -45,7 +45,7 @@ public class InmuebleRestController {
     }
 
     //Actualizar Inmueble
-    //curl -H "Content-Type: application/json" -X PUT -d "{\"tipo\":\"pisoPrueb\",\"ubicacion\":\"Ubicacion\",\"superficie\":\"12323.0\",\"precio\":\"1233.0\",\"numHabitaciones\":\"3\",\"numBaños\":\"1\",\"extras\":\"COn ascensor\",\"descripcion\":\"buen barrio\",\"imagen\":\"/home\"}" http://localhost:8080/dawm07eac4domotic/vendedor/14/19/update
+    //curl -H "Content-Type: application/json" -X PUT -d "{\"tipo\":\"pisoPrueb\",\"ubicacion\":\"Ubicacion\",\"superficie\":\"12323.0\",\"precio\":\"1233.0\",\"numHabitaciones\":\"3\",\"numBaños\":\"1\",\"extras\":\"COn ascensor\",\"descripcion\":\"buen barrio\",\"imagen\":\"/home\"}" http://localhost:8080/dawInmoExpress/vendedor/14/19/update
     @RequestMapping(value = ("/{idVivienda}/update"), method = RequestMethod.PUT)
     public @ResponseBody
     ResponseEntity<Inmueble> updateInmueble(@PathVariable("idVivienda") Integer idVivienda, @RequestBody Inmueble inmueble){
@@ -55,7 +55,7 @@ public class InmuebleRestController {
     }
    
     //Eliminar inmueble
-    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawm07eac4domotic/vendedor/14/18
+    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawInmoExpress/vendedor/14/18
     @RequestMapping(value = ("/{idVivienda}"), method = RequestMethod.DELETE)
     public @ResponseBody
      ResponseEntity<Inmueble> deleteInmueble(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda){
@@ -66,14 +66,13 @@ public class InmuebleRestController {
 
      
     //Crear Inmueble sin atributo imagen
-    //curl -H "Content-Type: application/json" -X POST -d "{\"tipo\":\"pisoTTTT\",\"ubicacion\":\"Ubicacion\",\"superficie\":\"12323.0\",\"precio\":\"1233.0\",\"numHabitaciones\":\"3\",\"numBaños\":\"1\",\"extras\":\"COn ascensor\",\"descripcion\":\"buen barrio\",\"imagen\":\"/home\}" http://localhost:8080/dawm07eac4domotic/vendedor/14/nuevoInmueble
+    //curl -H "Content-Type: application/json" -X POST -d "{\"tipo\":\"pisoTTTT\",\"ubicacion\":\"Ubicacion\",\"superficie\":\"12323.0\",\"precio\":\"1233.0\",\"numHabitaciones\":\"3\",\"numBaños\":\"1\",\"extras\":\"COn ascensor\",\"descripcion\":\"buen barrio\",\"imagen\":\"/home\"}" http://localhost:8080/dawInmoExpress/vendedor/14/nuevoInmueble
     @RequestMapping(value = ("/nuevoInmueble"), method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<Inmueble> createInmueble(@PathVariable("idVendedor") Integer idVendedor, @RequestBody Inmueble inmueble){
         Vendedor vendedor = vendedorDAOService.getVendedorByIdVendedor(idVendedor);
         this.inmuebleService.addInmueble(inmueble, vendedor.getIdVendedor());
         return new ResponseEntity<>(inmueble, HttpStatus.CREATED);
-    
     } 
  
    /* 
@@ -130,7 +129,7 @@ public class InmuebleRestController {
    } 
 
     private String mkdirDirectorio(int idVendedor, int path){ 
-        String vendedorPath = "/home/geovany/NetbeansProyects/IOC_PROYECT/dawm07eac4domotic/src/main/webapp/WEB-INF/img/vendedores/IdVendedor"+ idVendedor;
+        String vendedorPath = "/home/geovany/NetbeansProyects/IOC_PROYECT/dawInmoExpress/src/main/webapp/WEB-INF/img/vendedores/IdVendedor"+ idVendedor;
         File vendedorFile = new File (vendedorPath);
         vendedorFile.mkdir();
         String pathVivienda = (vendedorPath + "/IdVivienda" + path);
