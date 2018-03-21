@@ -45,7 +45,7 @@ public class VendedorRestController {
     }
     
     // crear vendedor
-    //curl -H "Content-Type: application/json" -X POST -d "{\"nombre\":\"vendedor\",\"email\":\"inmobiliaria1@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawm07eac4domotic/vendedor/nuevoVendedor
+    //curl -H "Content-Type: application/json" -X POST -d "{\"nombre\":\"vendedor\",\"email\":\"inmobiliaria1@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawInmoExpress/vendedor/nuevoVendedor
     @RequestMapping(value = ("/nuevoVendedor"), method = RequestMethod.POST)
     public @ResponseBody
     ResponseEntity<Vendedor> createVendedor(@RequestBody Vendedor vendedor){
@@ -55,7 +55,7 @@ public class VendedorRestController {
     }
     
     // Actualizar Vendedor
-    //curl -H "Content-Type: application/json" -X PUT -d "{\"nombre\":\"vendedorPrueba\",\"email\":\"inmo@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawm07eac4domotic/vendedor/14
+    //curl -H "Content-Type: application/json" -X PUT -d "{\"nombre\":\"vendedorPrueba\",\"email\":\"inmo@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawInmoExpress/vendedor/14
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.PUT)
     public @ResponseBody
     ResponseEntity<Vendedor> updateVendedor(@PathVariable("idVendedor") Integer idVendedor,@RequestBody Vendedor vendedor){
@@ -65,7 +65,7 @@ public class VendedorRestController {
     }
     
     // Eliminar Vendedor
-    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawm07eac4domotic/vendedor/6
+    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawInmoExpress/vendedor/6
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.DELETE)
     public @ResponseBody
      ResponseEntity<Vendedor> deleteVendedor(@PathVariable("idVendedor") Integer idVendedor){
@@ -79,5 +79,5 @@ public class VendedorRestController {
     public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor){
         return this.vendedorDAOService.getVendedorByIdVendedor(idVendedor);
     }
-    
-}
+
+} 

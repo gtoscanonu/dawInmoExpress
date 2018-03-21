@@ -42,7 +42,6 @@ public class VendedorDAOHibernate implements VendedorDAORepository {
 
     @Override
     public void addVendedor(Vendedor vendedor) {
-        System.out.println("asdfjasdhfladkjshfldkjashfldhjasflkjashdflkjashdf");
         getSession().saveOrUpdate(vendedor);
     }
 
