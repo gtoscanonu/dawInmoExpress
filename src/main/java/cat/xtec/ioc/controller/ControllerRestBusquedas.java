@@ -3,6 +3,7 @@ package cat.xtec.ioc.controller;
 import cat.xtec.ioc.domain.*;
 import cat.xtec.ioc.repository.InmuebleDAORepository;
 import cat.xtec.ioc.service.VendedorDAOService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -44,4 +46,9 @@ public class ControllerRestBusquedas {
         return this.inmuebleService.getInmuebleById(idVivienda);
     }
     
+    // Inmuebles por tipo http://localhost:8080/dawInmoExpress/inmuebles?tipo=pisoTTTT
+    @RequestMapping(value = ("/inmuebles"), method = RequestMethod.GET)
+    public @ResponseBody List<Inmueble> getInmueblesByTipus(@RequestParam("tipo") String tipo){
+        return this.inmuebleService.getInmueblesByTipus(tipo);
+    }
 }

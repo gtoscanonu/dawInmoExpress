@@ -38,10 +38,7 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
         return vendedor.getInmuebles();
     }
 
-    @Override
-    public List<Inmueble> getInmueblesByTipus(String tipo) {
-        return (List<Inmueble>) getSession().get(Inmueble.class, tipo);
-    }
+    
 
     @Override
     public void addInmueble(Inmueble inmueble, Integer idVendedor) {        
@@ -70,27 +67,30 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
             vendedorDAORepository.updateVendedor(vendedor);        
     }
     
+    @Override
+    public List<Inmueble> getInmueblesByTipus(String tipo) {
+
+        Criteria criteria = createEntityCriteria();
+        criteria.add(Restrictions.eq("tipo", tipo));
+        
+        return (List<Inmueble>) criteria.list();
+    }
+    
     @Override 
     public List<Inmueble> getAllInmuebles(){
-        List<Inmueble> allInmuebles = new ArrayList<Inmueble>();
-     
-          List<Vendedor> vendedores = vendedorDAORepository.getAllVendedor();
-          
-          for (Vendedor vendedor : vendedores ){
-              Set<Inmueble> inmuebles = vendedor.getInmuebles();
-              
-              for (Inmueble inmueble : inmuebles){
-                  allInmuebles.add(inmueble);
-              }
-         }
         
-        return allInmuebles;
-    
+        Criteria criteria = createEntityCriteria();
+        return (List<Inmueble>) criteria.list();
+     
     }
     
     
     protected Session getSession() {
         return sessionFactory.getCurrentSession();
+    }
+    
+    private Criteria createEntityCriteria() {
+        return getSession().createCriteria(Inmueble.class);
     }
 
 }
