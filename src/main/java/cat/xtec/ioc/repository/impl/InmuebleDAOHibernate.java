@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
+import org.hibernate.Query;
 
 @Transactional
 @Repository
@@ -37,8 +38,6 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
        Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
         return vendedor.getInmuebles();
     }
-
-    
 
     @Override
     public void addInmueble(Inmueble inmueble, Integer idVendedor) {        
@@ -84,6 +83,17 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
      
     }
     
+    @Override
+    public List<Inmueble> getQueryCriteria(float pMin, float pMax, Integer nHab, String ubicacion, String tipo) {
+       
+       Criteria criteria = createEntityCriteria();
+       criteria.add(Restrictions.between("precio", pMin, pMax));
+       criteria.add(Restrictions.ge("numHabitaciones", nHab));
+       criteria.add(Restrictions.eq("ubicacion", ubicacion));
+       criteria.add(Restrictions.eq("tipo", tipo));
+       
+       return (List<Inmueble>) criteria.list();
+    }
     
     protected Session getSession() {
         return sessionFactory.getCurrentSession();

@@ -18,6 +18,8 @@ public interface InmuebleDAORepository {
     
     List<Inmueble> getAllInmuebles();
     
+    List<Inmueble> getQueryCriteria(float pMin, float pMax, Integer nHab, String ubicacion, String tipo);
+    
     void addInmueble(Inmueble inmueble, Integer idVendedor);
     
     void updateInmueble(Inmueble inmueble);

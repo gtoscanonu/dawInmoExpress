@@ -12,6 +12,7 @@ public interface VendedorDAORepository {
     List<Vendedor> getAllVendedor();
     Vendedor getVendedorByIdVendedor(Integer idVendedor);
     Vendedor getVendedorByNombre(String nombre);
+    Vendedor validarVendedor(String email);
     void addVendedor(Vendedor vendedor);
     void updateVendedor(Vendedor vendedor);
     void deleteVendedor(Vendedor vendedor);

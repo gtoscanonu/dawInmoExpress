@@ -54,5 +54,10 @@ public class VendedorDAOServiceImpl implements VendedorDAOService {
     public void deleteVendedor(Vendedor vendedor) {
         vendedorDAORepository.deleteVendedor(vendedor);
     }
+
+    @Override
+    public Vendedor validarVendedor(String email) {
+        return vendedorDAORepository.validarVendedor(email);
+    }
     
 }
