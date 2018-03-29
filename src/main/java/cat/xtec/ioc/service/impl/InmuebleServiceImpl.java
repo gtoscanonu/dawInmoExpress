@@ -74,13 +74,13 @@ public class InmuebleServiceImpl implements InmuebleService {
       if (ubicacion.toLowerCase().equals("totes les zones") && tipo.toLowerCase().equals("tots els tipus")){
           inmuebles =  inmuebleDAORepository.getQueryCriteria(pMin, pMax, anuncio);
       }
-      if(ubicacion.toLowerCase().equals("otes les zones") && !tipo.toLowerCase().equals("tots els tipus")){
+      if(ubicacion.toLowerCase().equals("totes les zones") && !tipo.toLowerCase().equals("tots els tipus")){
               inmuebles =  inmuebleDAORepository.getQueryCriteriaTres(pMin, pMax, anuncio, tipo);
           }
-      if(!ubicacion.toLowerCase().equals("otes les zones") && tipo.toLowerCase().equals("ots els tipus")){
+      if(!ubicacion.toLowerCase().equals("totes les zones") && tipo.toLowerCase().equals("tots els tipus")){
               inmuebles =  inmuebleDAORepository.getQueryCriteriaDos(pMin, pMax, anuncio, ubicacion);
           }
-      if(!ubicacion.toLowerCase().equals("otes les zones") && !tipo.toLowerCase().equals("tots els tipus")){
+      if(!ubicacion.toLowerCase().equals("totes les zones") && !tipo.toLowerCase().equals("tots els tipus")){
               inmuebles =  inmuebleDAORepository.getQueryCriteriaCuatro(pMin, pMax, anuncio, ubicacion, tipo );
           }
            
