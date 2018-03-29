@@ -14,11 +14,17 @@ public interface InmuebleDAORepository {
     
     Set<Inmueble> getAllInmueblesByVendedor(Integer idVendedor);
     
-    List<Inmueble> getInmueblesByTipus(String tipo);
+    List<Inmueble> getInmueblesByAnuncio(String anuncio);
     
     List<Inmueble> getAllInmuebles();
     
-    List<Inmueble> getQueryCriteria(float pMin, float pMax, Integer nHab, String ubicacion, String tipo);
+    List<Inmueble> getQueryCriteria(float pMin, float pMax, String anuncio);
+    
+    List<Inmueble> getQueryCriteriaDos(float pMin, float pMax, String anuncio, String ubicacion);
+    
+    List<Inmueble> getQueryCriteriaTres(float pMin, float pMax, String anuncio, String tipo);
+    
+    List<Inmueble> getQueryCriteriaCuatro(float pMin, float pMax, String anuncio, String ubicacion, String tipo);
     
     void addInmueble(Inmueble inmueble, Integer idVendedor);
     

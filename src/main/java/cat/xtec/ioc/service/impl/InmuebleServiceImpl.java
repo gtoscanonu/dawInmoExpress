@@ -46,8 +46,8 @@ public class InmuebleServiceImpl implements InmuebleService {
     }
 
     @Override
-    public List<Inmueble> getInmueblesByTipus(String tipo) {
-        return inmuebleDAORepository.getInmueblesByTipus(tipo);
+    public List<Inmueble> getInmueblesByAnuncio(String anuncio) {
+        return inmuebleDAORepository.getInmueblesByAnuncio(anuncio);
     }
 
     @Override
@@ -67,7 +67,33 @@ public class InmuebleServiceImpl implements InmuebleService {
     }
 
     @Override
-    public List<Inmueble> getQueryCriteria(float pMin, float pMax, Integer nHab, String ubicacion, String tipo) {
-      return inmuebleDAORepository.getQueryCriteria(pMin, pMax, nHab, ubicacion, tipo);
+    public List<Inmueble> getQueryCriteria(float pMin, float pMax, Integer nHab, String ubicacion, String tipo, String anuncio) {
+       List<Inmueble> inmuebles = new ArrayList<>();
+       List<Inmueble> inmuebles2 = new ArrayList<>();
+     
+      if (ubicacion.equals("Todas las zonas") && tipo.equals("Todos los tipos")){
+          inmuebles =  inmuebleDAORepository.getQueryCriteria(pMin, pMax, anuncio);
+      }
+      if(ubicacion.equals("Todas las zonas") && !tipo.equals("Todos los tipos")){
+              inmuebles =  inmuebleDAORepository.getQueryCriteriaTres(pMin, pMax, anuncio, tipo);
+          }
+      if(!ubicacion.equals("Todas las zonas") && tipo.equals("Todos los tipos")){
+              inmuebles =  inmuebleDAORepository.getQueryCriteriaDos(pMin, pMax, anuncio, ubicacion);
+          }
+      if(!ubicacion.equals("Todas las zonas") && !tipo.equals("Todos los tipos")){
+              inmuebles =  inmuebleDAORepository.getQueryCriteriaCuatro(pMin, pMax, anuncio, ubicacion, tipo );
+          }
+           
+      if ( nHab >1){
+            for (Inmueble inmuebleItem : inmuebles){
+                if (inmuebleItem.getNumHabitaciones() >= 2){
+                    inmuebles2.add(inmuebleItem);
+                }
+            }
+        }
+      
+      return inmuebles2; 
     }
+    
+    
 }

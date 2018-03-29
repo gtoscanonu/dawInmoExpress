@@ -47,22 +47,23 @@ public class ControllerRestBusquedas {
         return this.inmuebleService.getInmuebleById(idVivienda);
     }
     
-    // Inmuebles por tipo recibo el tipo de inmueble http://localhost:8080/dawInmoExpress/inmuebles?tipo=pisoTTTT
-    @RequestMapping(value = ("/inmuebles"), method = RequestMethod.GET)
-    public @ResponseBody List<Inmueble> getInmueblesByTipus(@RequestParam("tipo") String tipo){
-        return this.inmuebleService.getInmueblesByTipus(tipo);
+    // Inmuebles por tipo de anuncio recibo el anuncio de inmueble en la url http://localhost:8080/dawInmoExpress/venta
+    @RequestMapping(value = ("/inmuebles/{anuncio}"), method = RequestMethod.GET)
+    public @ResponseBody List<Inmueble> getInmueblesByAnuncio(@PathVariable("anuncio") String anuncio){
+        return this.inmuebleService.getInmueblesByAnuncio(anuncio);
     }
     
     // Obtener búsqueda (recibimos precio min, precio max, numHabitaciones 1 o +2, ubicación, tipo)
     // Se debe enviar un valor por defecto para cada parámetro
-    @RequestMapping(value = ("/busqueda"), method = RequestMethod.GET)
+    @RequestMapping(value = ("/inmuebles/{anuncio}/filtro"), method = RequestMethod.GET)
     public @ResponseBody List<Inmueble> getCriterya(
             @RequestParam("pMax") float pMax,
             @RequestParam("pMax") float pMin,
             @RequestParam("nHab") Integer nHab,
             @RequestParam("ubicacion") String ubicacion,
-            @RequestParam("tipo") String tipo){
+            @RequestParam("tipo") String tipo,
+            @PathVariable("anuncio") String anuncio){
         
-        return this.inmuebleService.getQueryCriteria(pMin, pMax, nHab, ubicacion, tipo);
+        return this.inmuebleService.getQueryCriteria(pMin, pMax, nHab, ubicacion, tipo, anuncio);
     }
 }
