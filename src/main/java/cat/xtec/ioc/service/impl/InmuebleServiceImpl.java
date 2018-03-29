@@ -5,6 +5,7 @@ import cat.xtec.ioc.domain.Vendedor;
 import cat.xtec.ioc.repository.InmuebleDAORepository;
 import cat.xtec.ioc.repository.VendedorDAORepository;
 import cat.xtec.ioc.service.InmuebleService;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +19,10 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class InmuebleServiceImpl implements InmuebleService {
+    
+    @Autowired
     private InmuebleDAORepository inmuebleDAORepository;
+    @Autowired
     private VendedorDAORepository vendedorDAORepository;
 /*    
     public InmuebleServiceImpl(VendedorDAORepository vendedorDAORepository, InmuebleDAORepository inmuebleDAORepository){
@@ -33,8 +37,7 @@ public class InmuebleServiceImpl implements InmuebleService {
 
     @Override
     public Set<Inmueble> getAllInmueblesByVendedor(Integer idVendedor) {
-        Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
-        return vendedor.getInmuebles();
+        return inmuebleDAORepository.getAllInmueblesByVendedor(idVendedor);
     }
     
     @Override
@@ -43,21 +46,13 @@ public class InmuebleServiceImpl implements InmuebleService {
     }
 
     @Override
-    public List<Inmueble> getInmueblesByTipus(String tipo) {
-        return inmuebleDAORepository.getInmueblesByTipus(tipo);
+    public List<Inmueble> getInmueblesByAnuncio(String anuncio) {
+        return inmuebleDAORepository.getInmueblesByAnuncio(anuncio);
     }
 
     @Override
     public void addInmueble(Inmueble inmueble, Integer idVendedor) {
-        Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
-        Set<Inmueble> inmuebles = vendedor.getInmuebles();
-        if (inmuebles != null){
-            inmuebles.add(inmueble);
-        } else{
-            inmuebles = new HashSet<>();
-            inmuebles.add(inmueble);
-            vendedor.setInmuebles(inmuebles);
-        }
+       inmuebleDAORepository.addInmueble(inmueble, idVendedor);
     }
         
 
@@ -70,5 +65,35 @@ public class InmuebleServiceImpl implements InmuebleService {
     public void deleteInmueble(Inmueble inmueble, Integer idVendedor) {
         inmuebleDAORepository.deleteInmueble(inmueble, idVendedor);
     }
+
+    @Override
+    public List<Inmueble> getQueryCriteria(float pMin, float pMax, Integer nHab, String ubicacion, String tipo, String anuncio) {
+       List<Inmueble> inmuebles = new ArrayList<>();
+       List<Inmueble> inmuebles2 = new ArrayList<>();
+     
+      if (ubicacion.equals("Todas las zonas") && tipo.equals("Todos los tipos")){
+          inmuebles =  inmuebleDAORepository.getQueryCriteria(pMin, pMax, anuncio);
+      }
+      if(ubicacion.equals("Todas las zonas") && !tipo.equals("Todos los tipos")){
+              inmuebles =  inmuebleDAORepository.getQueryCriteriaTres(pMin, pMax, anuncio, tipo);
+          }
+      if(!ubicacion.equals("Todas las zonas") && tipo.equals("Todos los tipos")){
+              inmuebles =  inmuebleDAORepository.getQueryCriteriaDos(pMin, pMax, anuncio, ubicacion);
+          }
+      if(!ubicacion.equals("Todas las zonas") && !tipo.equals("Todos los tipos")){
+              inmuebles =  inmuebleDAORepository.getQueryCriteriaCuatro(pMin, pMax, anuncio, ubicacion, tipo );
+          }
+           
+      if ( nHab >1){
+            for (Inmueble inmuebleItem : inmuebles){
+                if (inmuebleItem.getNumHabitaciones() >= 2){
+                    inmuebles2.add(inmuebleItem);
+                }
+            }
+        }
+      
+      return inmuebles2; 
+    }
+    
     
 }

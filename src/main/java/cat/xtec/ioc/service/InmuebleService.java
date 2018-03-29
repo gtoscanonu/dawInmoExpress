@@ -10,18 +10,20 @@ import java.util.Set;
  */
 public interface InmuebleService {
     
-     Inmueble getInmuebleById(Integer id_vivienda);
+    Inmueble getInmuebleById(Integer id_vivienda);
     
     Set<Inmueble> getAllInmueblesByVendedor(Integer idVendedor);
     
-    List<Inmueble> getInmueblesByTipus(String tipo);
+    List<Inmueble> getInmueblesByAnuncio(String anuncio);
     
     List<Inmueble> getAllInmuebles();
+    
+    List<Inmueble> getQueryCriteria(float pMin, float pMax, Integer nHab, String ubicacion, String tipo, String anuncio);
     
     void addInmueble(Inmueble inmueble, Integer idVendedor);
     
     void updateInmueble(Inmueble inmueble);
     
     void deleteInmueble(Inmueble inmueble, Integer idVendedor);
-    
 }
+

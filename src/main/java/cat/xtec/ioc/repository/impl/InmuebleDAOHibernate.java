@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
+import org.hibernate.Query;
 
 @Transactional
 @Repository
@@ -37,8 +38,6 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
        Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
         return vendedor.getInmuebles();
     }
-
-    
 
     @Override
     public void addInmueble(Inmueble inmueble, Integer idVendedor) {        
@@ -68,10 +67,10 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
     }
     
     @Override
-    public List<Inmueble> getInmueblesByTipus(String tipo) {
+    public List<Inmueble> getInmueblesByAnuncio(String anuncio) {
 
         Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("tipo", tipo));
+        criteria.add(Restrictions.eq("anuncio", anuncio));
         
         return (List<Inmueble>) criteria.list();
     }
@@ -84,6 +83,49 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
      
     }
     
+    @Override
+    public List<Inmueble> getQueryCriteria(float pMin, float pMax, String anuncio) {
+       
+       Criteria criteria = createEntityCriteria();
+       criteria.add(Restrictions.between("precio", pMin, pMax));
+       criteria.add(Restrictions.eq("anuncio", anuncio));
+       
+       return (List<Inmueble>) criteria.list();
+    }
+    
+    @Override
+    public List<Inmueble> getQueryCriteriaDos(float pMin, float pMax, String anuncio, String ubicacion) {
+       
+       Criteria criteria = createEntityCriteria();
+       criteria.add(Restrictions.between("precio", pMin, pMax));
+       criteria.add(Restrictions.eq("ubicacion", ubicacion));
+       criteria.add(Restrictions.eq("anuncio", anuncio));
+       
+       return (List<Inmueble>) criteria.list();
+    }
+    
+    @Override
+    public List<Inmueble> getQueryCriteriaTres(float pMin, float pMax, String anuncio, String tipo) {
+       
+       Criteria criteria = createEntityCriteria();
+       criteria.add(Restrictions.between("precio", pMin, pMax));
+       criteria.add(Restrictions.eq("tipo", tipo));
+       criteria.add(Restrictions.eq("anuncio", anuncio));
+       
+       return (List<Inmueble>) criteria.list();
+    }
+    
+    @Override
+    public List<Inmueble> getQueryCriteriaCuatro(float pMin, float pMax, String anuncio, String ubicacion, String tipo) {
+       
+       Criteria criteria = createEntityCriteria();
+       criteria.add(Restrictions.between("precio", pMin, pMax));
+       criteria.add(Restrictions.eq("ubicacion", ubicacion));
+       criteria.add(Restrictions.eq("tipo", tipo));
+       criteria.add(Restrictions.eq("anuncio", anuncio));
+       
+       return (List<Inmueble>) criteria.list();
+    }
     
     protected Session getSession() {
         return sessionFactory.getCurrentSession();

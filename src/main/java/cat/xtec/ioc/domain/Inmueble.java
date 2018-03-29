@@ -30,6 +30,11 @@ public class Inmueble implements Serializable {
     @Size(max = 100)
     private String tipo;
     
+    @Column(name = "anuncio")
+    @NotNull
+    @Size(max = 50)
+    private String anuncio;
+    
     @Column(name = "Ubicacion")
     @NotNull
     @Size(max = 100)
@@ -229,6 +234,20 @@ public class Inmueble implements Serializable {
      */
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    /**
+     * @return the anuncio
+     */
+    public String getAnuncio() {
+        return anuncio;
+    }
+
+    /**
+     * @param anuncio the anuncio to set
+     */
+    public void setAnuncio(String anuncio) {
+        this.anuncio = anuncio;
     }
 
 }

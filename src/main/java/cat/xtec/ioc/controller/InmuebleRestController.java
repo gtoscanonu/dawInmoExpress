@@ -87,7 +87,8 @@ public class InmuebleRestController {
             @RequestParam("numBanios") int numBanios,
             @RequestParam("ubicacion") String ubicacion,
             @RequestParam("extras") String extras,
-            @RequestParam("descripcion") String descripcion,  
+            @RequestParam("descripcion") String descripcion, 
+            @RequestParam("anuncio") String anuncio,
             @RequestParam("imagen") MultipartFile file) throws IOException {
         
         Inmueble newInmueble= new Inmueble();
@@ -98,6 +99,7 @@ public class InmuebleRestController {
         newInmueble.setNumHabitaciones(numHabitaciones);
         newInmueble.setUbicacion(ubicacion);
         newInmueble.setPrecio(precio);
+        newInmueble.setAnuncio(anuncio);
         newInmueble.setSuperficie(superficie);
         
         byte[] photoBytes2 = file.getBytes();

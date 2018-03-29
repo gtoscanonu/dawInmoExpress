@@ -44,6 +44,7 @@ public class VendedorRestController {
         
     }
     
+    
     // crear vendedor
     //curl -H "Content-Type: application/json" -X POST -d "{\"nombre\":\"vendedor\",\"email\":\"inmobiliaria1@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawInmoExpress/vendedor/nuevoVendedor
     @RequestMapping(value = ("/nuevoVendedor"), method = RequestMethod.POST)
@@ -54,15 +55,16 @@ public class VendedorRestController {
     
     }
     
-    // Actualizar Vendedor
-    //curl -H "Content-Type: application/json" -X PUT -d "{\"nombre\":\"vendedorPrueba\",\"email\":\"inmo@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawInmoExpress/vendedor/14
-    @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.PUT)
+    // login vendedor
+    @RequestMapping(value = ("/login"), method = RequestMethod.GET)
     public @ResponseBody
-    ResponseEntity<Vendedor> updateVendedor(@PathVariable("idVendedor") Integer idVendedor,@RequestBody Vendedor vendedor){
-        vendedor.setIdVendedor(idVendedor);
-        this.vendedorDAOService.updateVendedor(vendedor);
-        return new ResponseEntity<>(vendedor, HttpStatus.OK);
+    ResponseEntity<Vendedor> validarVendedor(/*@RequestParam("email") String email*/){
+       String email = "insmo@gmail.com";
+       Vendedor vendedor = this.vendedorDAOService.validarVendedor(email);  
+       return new ResponseEntity<>(vendedor, HttpStatus.OK);
     }
+    
+    
     
     // Eliminar Vendedor
     //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawInmoExpress/vendedor/6
@@ -73,7 +75,17 @@ public class VendedorRestController {
         this.vendedorDAOService.deleteVendedor(vendedor);
         return new ResponseEntity<>(vendedor, HttpStatus.OK);
      }
+    
      
+    // Actualizar Vendedor
+    //curl -H "Content-Type: application/json" -X PUT -d "{\"nombre\":\"vendedorPrueba\",\"email\":\"inmo@gmail.com\",\"telefono\":\"123123123\"}" http://localhost:8080/dawInmoExpress/vendedor/14
+    @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.PUT)
+    public @ResponseBody
+    ResponseEntity<Vendedor> updateVendedor(@PathVariable("idVendedor") Integer idVendedor,@RequestBody Vendedor vendedor){
+        vendedor.setIdVendedor(idVendedor);
+        this.vendedorDAOService.updateVendedor(vendedor);
+        return new ResponseEntity<>(vendedor, HttpStatus.OK);
+    } 
     // atributos de 1 vendedor
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.GET)
     public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor){
