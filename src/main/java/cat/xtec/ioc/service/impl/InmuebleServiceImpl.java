@@ -90,9 +90,11 @@ public class InmuebleServiceImpl implements InmuebleService {
                     inmuebles2.add(inmuebleItem);
                 }
             }
-        }
-      
-      return inmuebles2; 
+            return inmuebles2; 
+        }else{
+             return inmuebles; 
+      }
+
     }
     
     
