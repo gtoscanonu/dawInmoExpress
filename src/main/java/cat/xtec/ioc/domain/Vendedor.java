@@ -15,6 +15,8 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Set;
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 /**
  *
  * @author root
@@ -32,18 +34,30 @@ public class Vendedor implements Serializable {
     private Set<Inmueble> inmuebles;
    
     @NotNull
+    @NotBlank
     @Size(max = 100)
     @Column(name = "nombre")
     private String nombre;
     
     @NotNull
     @Size(max=100)
+    @Email
+    @NotBlank
     @Column(name = "email")
     private String email;
     
     @NotNull
     @Column(name = "telefono")
     private Integer telefono;
+    
+    @NotNull
+    @NotBlank
+    @Column(name = "password")
+    private String password;
+    
+    @NotNull
+    @Column(name = "rol")
+    private String rol;
     
     public Vendedor(){}
     
@@ -118,6 +132,34 @@ public class Vendedor implements Serializable {
 
     public void setInmuebles(Set<Inmueble> inmuebles) {
         this.inmuebles = inmuebles;
+    }
+
+    /**
+     * @return the password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    /**
+     * @return the rol
+     */
+    public String getRol() {
+        return rol;
+    }
+
+    /**
+     * @param rol the rol to set
+     */
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
 }

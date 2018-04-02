@@ -44,26 +44,25 @@ public class VendedorDAOHibernate implements VendedorDAORepository {
         return (Vendedor) criteria.uniqueResult();
     }
     
-    @Override
-    public Vendedor validarVendedor(String email) {
-    /*    String consulta = "Select p.email from Vendedor p where p.email = " + email;
-        Query query = getSession().createQuery(consulta);
-        String respuesta = query.getQueryString();
+    @Override 
+    public Vendedor loginVendedor(String email){
+       Criteria criteria = createEntityCriteria();
+       criteria.add(Restrictions.eq("email", email));
+       
+       List<Vendedor> vendedores= (List<Vendedor>) criteria.list();
         
-        Query query2 = getSession().createQuery(consulta);
-        List<Vendedor> vendedores = query.list();
-        Vendedor vendedor = vendedores.get(0); */
-        Criteria criteria = createEntityCriteria();
-        criteria.add(Restrictions.eq("email", email));
+       Vendedor vendedor = vendedores.get(0);
+       return vendedor;
+    }
+    
+    @Override
+    public Integer validarVendedor(String email) {
+       Criteria criteria = createEntityCriteria();
+       criteria.add(Restrictions.eq("email", email));
         
        List<Vendedor> vendedores= (List<Vendedor>) criteria.list();
-       
-       System.out.println("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-        System.out.println(vendedores.size());
-       Vendedor vendedor = new Vendedor();
-        
-        
-        return vendedor;
+
+      return vendedores.size();
     }
 
     @Override
