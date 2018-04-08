@@ -29,7 +29,7 @@ public class loginController {
         this.vendedorDAOService=vendedorDAOService;
     }
     
-    
+  /*  
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
@@ -46,9 +46,9 @@ public class loginController {
         return "login";
     }
     
-    
+  */  
     // login vendedor
-    @RequestMapping(value = ("/login2"), method = RequestMethod.GET)
+    @RequestMapping(value = ("/login"), method = RequestMethod.GET)
     public @ResponseBody
     String validarVendedor(@RequestParam("email") String email, @RequestParam("password") String password){
        
