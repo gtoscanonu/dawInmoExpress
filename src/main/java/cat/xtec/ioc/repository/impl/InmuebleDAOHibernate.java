@@ -6,6 +6,7 @@ import cat.xtec.ioc.repository.InmuebleDAORepository;
 import cat.xtec.ioc.repository.VendedorDAORepository;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -59,11 +60,26 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
     
    @Override
     public void deleteInmueble(Inmueble inmueble, Integer idVendedor) {
-        Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
+
+       
+       Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
+
         Set<Inmueble> inmuebles = vendedor.getInmuebles();
-            inmuebles.remove(inmueble);
-            vendedor.setInmuebles(inmuebles);
-            vendedorDAORepository.updateVendedor(vendedor);        
+            
+        Set<Inmueble> inmuebles2 = new HashSet<Inmueble>();
+        
+        for (Inmueble inmuebleItem : inmuebles ){
+            if (inmuebleItem.getIdVivienda() != inmueble.getIdVivienda()){  
+                inmuebles2.add(inmuebleItem);
+            }
+        }
+            
+        inmuebles.clear();
+
+        vendedor.setInmuebles(inmuebles2);
+        vendedorDAORepository.updateVendedor(vendedor);   
+        
+        getSession().delete(inmueble);
     }
     
     @Override
@@ -84,46 +100,54 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
     }
     
     @Override
+
     public List<Inmueble> getQueryCriteria(float pMin, float pMax, String anuncio) {
-       
        Criteria criteria = createEntityCriteria();
        criteria.add(Restrictions.between("precio", pMin, pMax));
-       criteria.add(Restrictions.eq("anuncio", anuncio));
-       
+       if(!anuncio.equalsIgnoreCase("tots els tipus")){
+            criteria.add(Restrictions.eq("anuncio", anuncio));
+      }
        return (List<Inmueble>) criteria.list();
     }
-    
+
+   
+
     @Override
     public List<Inmueble> getQueryCriteriaDos(float pMin, float pMax, String anuncio, String ubicacion) {
-       
        Criteria criteria = createEntityCriteria();
        criteria.add(Restrictions.between("precio", pMin, pMax));
        criteria.add(Restrictions.eq("ubicacion", ubicacion));
-       criteria.add(Restrictions.eq("anuncio", anuncio));
-       
+       if(!anuncio.equalsIgnoreCase("tots els tipus")){
+            criteria.add(Restrictions.eq("anuncio", anuncio));
+       }
        return (List<Inmueble>) criteria.list();
     }
-    
+
+   
+
     @Override
+
     public List<Inmueble> getQueryCriteriaTres(float pMin, float pMax, String anuncio, String tipo) {
-       
        Criteria criteria = createEntityCriteria();
        criteria.add(Restrictions.between("precio", pMin, pMax));
        criteria.add(Restrictions.eq("tipo", tipo));
-       criteria.add(Restrictions.eq("anuncio", anuncio));
-       
+       if(!anuncio.equalsIgnoreCase("tots els tipus")){
+            criteria.add(Restrictions.eq("anuncio", anuncio));
+       }
        return (List<Inmueble>) criteria.list();
     }
-    
+
+   
+
     @Override
-    public List<Inmueble> getQueryCriteriaCuatro(float pMin, float pMax, String anuncio, String ubicacion, String tipo) {
-       
+    public List<Inmueble> getQueryCriteriaCuatro(float pMin, float pMax, String anuncio, String ubicacion, String tipo) { 
        Criteria criteria = createEntityCriteria();
        criteria.add(Restrictions.between("precio", pMin, pMax));
        criteria.add(Restrictions.eq("ubicacion", ubicacion));
        criteria.add(Restrictions.eq("tipo", tipo));
-       criteria.add(Restrictions.eq("anuncio", anuncio));
-       
+       if(!anuncio.equalsIgnoreCase("tots els tipus")){
+            criteria.add(Restrictions.eq("anuncio", anuncio));
+       }
        return (List<Inmueble>) criteria.list();
     }
     

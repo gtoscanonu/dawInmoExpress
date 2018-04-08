@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
+import org.springframework.ui.Model;
 
 @Controller
 public class loginController {
@@ -28,6 +29,24 @@ public class loginController {
         this.vendedorDAOService=vendedorDAOService;
     }
     
+  /*  
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
+    public String loginerror(Model model) {
+        model.addAttribute("error", "true");
+        return "login";
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String logout(Model model) {
+        return "login";
+    }
+    
+  */  
     // login vendedor
     @RequestMapping(value = ("/login"), method = RequestMethod.GET)
     public @ResponseBody
