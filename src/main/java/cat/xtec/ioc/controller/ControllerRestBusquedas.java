@@ -55,16 +55,17 @@ public class ControllerRestBusquedas {
     
     // Obtener búsqueda (recibimos precio min, precio max, numHabitaciones 1 o +2, ubicación, tipo)
     // Se debe enviar un valor por defecto para cada parámetro
-    @RequestMapping(value = ("/inmoble/{anuncio}/filtre"), method = RequestMethod.GET)
+    @RequestMapping(value = ("/inmoble/filtre"), method = RequestMethod.GET)
+
     public @ResponseBody List<Inmueble> getCriterya(
+            @RequestParam("pMin") float pMin,
             @RequestParam("pMax") float pMax,
-            @RequestParam("pMax") float pMin,
             @RequestParam("nHab") Integer nHab,
             @RequestParam("ubicacion") String ubicacion,
             @RequestParam("tipo") String tipo,
-            @PathVariable("anuncio") String anuncio){
-            
-        
+            @RequestParam("anuncio") String anuncio){
+
         return this.inmuebleService.getQueryCriteria(pMin, pMax, nHab, ubicacion, tipo, anuncio);
+
     }
 }

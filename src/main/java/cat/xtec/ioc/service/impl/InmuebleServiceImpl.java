@@ -84,18 +84,11 @@ public class InmuebleServiceImpl implements InmuebleService {
               inmuebles =  inmuebleDAORepository.getQueryCriteriaCuatro(pMin, pMax, anuncio, ubicacion, tipo );
           }
            
-      if ( nHab >1){
-            for (Inmueble inmuebleItem : inmuebles){
-                if (inmuebleItem.getNumHabitaciones() >= 2){
+    for (Inmueble inmuebleItem : inmuebles){
+            if (inmuebleItem.getNumHabitaciones() >= nHab){
                     inmuebles2.add(inmuebleItem);
-                }
             }
-            return inmuebles2; 
-        }else{
-             return inmuebles; 
       }
-
-    }
-    
-    
+      return inmuebles2;
+    } 
 }
