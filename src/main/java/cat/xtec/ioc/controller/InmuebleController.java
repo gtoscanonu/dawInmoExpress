@@ -126,6 +126,7 @@ public class InmuebleController {
             @RequestParam("extras") String extras,
             @RequestParam("descripcion") String descripcion, 
             @PathVariable("idVendedor") Integer idVendedor, 
+            @RequestParam("anuncio") String anuncio,
             @RequestParam("imagen") MultipartFile file) throws IOException {
         Inmueble newInmueble= new Inmueble();
         newInmueble.setDescripcion(descripcion);
@@ -135,6 +136,7 @@ public class InmuebleController {
         newInmueble.setNumHabitaciones(numHabitaciones);
         newInmueble.setUbicacion(ubicacion);
         newInmueble.setPrecio(precio);
+        newInmueble.setAnuncio(anuncio);
         newInmueble.setSuperficie(superficie);
         
         byte[] photoBytes2 = file.getBytes();
@@ -169,7 +171,7 @@ public class InmuebleController {
    } 
 
     private String mkdirDirectorio(int idVendedor, int path){ 
-        String vendedorPath = "/home/geovany/NetbeansProyects/IOC_PROYECT/dawm07eac4domotic/src/main/webapp/WEB-INF/img/vendedores/IdVendedor"+ idVendedor;
+        String vendedorPath = "/home/geovany/NetbeansProyects/IOC_PROYECT/dawInmoExpress/src/main/webapp/WEB-INF/img/vendedores/IdVendedor"+ idVendedor;
         File vendedorFile = new File (vendedorPath);
         vendedorFile.mkdir();
         String pathVivienda = (vendedorPath + "/IdVivienda" + path);

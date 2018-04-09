@@ -83,6 +83,14 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="control-label col-lg-2 col-lg-2" for="anuncio">
+                            anuncio:
+                        </label>
+                        <div class="col-lg-10">
+                            <form:input id="anuncio" path="anuncio" type="text" class="form:input-large"/>
+                        </div>
+                    </div>    
+                    <div class="form-group">
                         <label class="control-label col-lg-2 col-lg-2" for="extras">
                             Extras:
                         </label>
