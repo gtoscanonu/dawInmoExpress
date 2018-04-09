@@ -25,5 +25,7 @@ public interface InmuebleService {
     void updateInmueble(Inmueble inmueble);
     
     void deleteInmueble(Inmueble inmueble, Integer idVendedor);
+    
+    void deletefk(Inmueble inmueble, Integer idVendedor);
 }
 

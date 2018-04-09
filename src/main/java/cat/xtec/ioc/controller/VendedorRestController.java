@@ -2,6 +2,7 @@ package cat.xtec.ioc.controller;
 
 import cat.xtec.ioc.domain.*;
 import cat.xtec.ioc.repository.InmuebleDAORepository;
+import cat.xtec.ioc.service.InmuebleService;
 import cat.xtec.ioc.service.VendedorDAOService;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -31,11 +32,11 @@ public class VendedorRestController {
     VendedorDAOService vendedorDAOService;
     
     @Autowired
-    InmuebleDAORepository inmuebleService;
+    InmuebleService inmuebleService;
     
     public VendedorRestController(){}
     
-    public VendedorRestController(VendedorDAOService vendedorDAOService, InmuebleDAORepository inmuebleService){
+    public VendedorRestController(VendedorDAOService vendedorDAOService, InmuebleService inmuebleService){
         this.vendedorDAOService=vendedorDAOService;
         this.inmuebleService=inmuebleService;
     }
@@ -64,13 +65,14 @@ public class VendedorRestController {
     }
     
     //Eliminar inmueble
-    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawInmoExpress/vendedor/14/18
+    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawInmoExpress/venedor/14/inmobles/9
     @RequestMapping(value = ("{idVendedor}/inmoble/{idVivienda}"), method = RequestMethod.DELETE)
     public @ResponseBody
-     ResponseEntity<Inmueble> deleteInmueble(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda){
+     String deleteInmueble(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda){
         Inmueble inmueble = inmuebleService.getInmuebleById(idVivienda);
+        this.inmuebleService.deletefk(inmueble, idVendedor);
         this.inmuebleService.deleteInmueble(inmueble, idVendedor);
-        return new ResponseEntity<>(inmueble, HttpStatus.OK);
+        return "http://localhost:8080/dawInmoExpress/venedor/"+idVendedor+"/inmobles";
     }
      
     //Actualizar Inmueble sin atributo imagen OBSOLETO

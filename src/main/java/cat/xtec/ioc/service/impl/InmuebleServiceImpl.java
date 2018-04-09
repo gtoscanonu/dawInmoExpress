@@ -91,4 +91,25 @@ public class InmuebleServiceImpl implements InmuebleService {
       }
       return inmuebles2;
     } 
+
+    @Override
+    public void deletefk(Inmueble inmueble, Integer idVendedor) {
+    
+       Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
+
+        Set<Inmueble> inmuebles = vendedor.getInmuebles();
+            
+        Set<Inmueble> inmuebles2 = new HashSet<Inmueble>();
+        
+        for (Inmueble inmuebleItem : inmuebles ){
+            if (inmuebleItem.getIdVivienda() != inmueble.getIdVivienda()){  
+                inmuebles2.add(inmuebleItem);
+            }
+        }
+            
+        inmuebles.clear();
+
+        vendedor.setInmuebles(inmuebles2);
+        vendedorDAORepository.updateVendedor(vendedor);   
+    }
 }
