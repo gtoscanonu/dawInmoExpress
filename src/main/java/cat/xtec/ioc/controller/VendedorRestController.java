@@ -84,7 +84,7 @@ public class VendedorRestController {
         this.inmuebleService.updateInmueble(inmueble);
         return "http://localhost:8080/dawInmoExpress/venedor/"+idVendedor+"/inmobles";
     } 
-    
+/*     
     //Crear Inmueble sin atributo imagen OBSOLETO
     //curl -H "Content-Type: application/json" -X POST -d "{\"tipo\":\"pisoTTTT\",\"ubicacion\":\"Ubicacion\",\"superficie\":\"12323.0\",\"precio\":\"1233.0\",\"numHabitaciones\":\"3\",\"numBaños\":\"1\",\"extras\":\"COn ascensor\",\"descripcion\":\"buen barrio\",\"imagen\":\"/home\",\"anuncio\":\"venda\"}" http://localhost:8080/dawInmoExpress/venedor/2/inmoble/nouInmoble
     @RequestMapping(value = ("{idVendedor}/inmoble/nouInmoble"), method = RequestMethod.POST)
@@ -95,7 +95,7 @@ public class VendedorRestController {
         return "http://localhost:8080/dawInmoExpress/venedor/"+idVendedor+"/inmobles";
     } 
     
-/*    //Actualizar Inmueble con atributo imagen 
+   //Actualizar Inmueble con atributo imagen 
     @RequestMapping(value = ("{idVendedor}/inmoble/{idVivienda}/editar"), method = RequestMethod.PUT)
     public @ResponseBody
     String updateInmueble(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda, 
@@ -136,7 +136,7 @@ public class VendedorRestController {
     }
 */    
  
-   /* 
+
     // Crear un inmueble recibiendo una imagen desde el cliente
     @RequestMapping(value = ("{idVendedor}/inmoble/nouInmoble"), method = RequestMethod.POST)
     public @ResponseBody 
@@ -179,7 +179,7 @@ public class VendedorRestController {
 
        return "http://localhost:8080/dawInmoExpress/venedor/"+idVendedor+"/inmobles";
     } 
-   */
+  
     private int queryIdVivienda(int idVendedor){
        int path = 0;
         Set<Inmueble> inmuebles = inmuebleService.getAllInmueblesByVendedor(idVendedor);
