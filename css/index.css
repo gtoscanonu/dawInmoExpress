@@ -1,5 +1,12 @@
-.estadistiques{
+.novisible{
 	display:none;
+}
+
+
+.cerca{
+	background-color:#e0e0e0;
+	margin-left:0px;
+	margin-right:0px;
 }
 
 .carousel-caption > h3{
@@ -10,6 +17,25 @@
 	line-height:50px;
 }
 
+#taula{
+	text-align:center;
+}
+
+th, td{
+	padding:15px;
+}
+
+#deleteuser{
+	margin:4px;
+}
+
+/*CSS per al input type=file */
+.thumb {
+    height: 75px;
+    border: 1px solid #000;
+    margin: 10px 5px 0 0;
+  }
+  
 /* CSS para la animación y localización de los DIV de cookies */
  
 @keyframes desaparecer

@@ -29,7 +29,7 @@ function processarInformacio() {
 
 function processarResposta(resposta) {
 	
-	var $item = $('<div class="row"><div class="col-md-7"><a href="#"><img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt=""></a></div><div class="col-md-3"><h3>ID : '+resposta.idVivienda+'</h3><p>Tipus : '+resposta.tipo+'</p><p>Ubicació : '+resposta.ubicacion+'</p><p>Superfície : '+resposta.superficie+'</p><p>Preu : '+resposta.precio+'</p><p>Nombre habitacions : '+resposta.numHabitaciones+'</p></div><div class="col-md-2" style="padding-top:40px"><p>Nombre de Banys : '+resposta.numBanios+'</p><p>Extres : '+resposta.extras+'</p><p>Descripció : '+resposta.descripcion+'</p><br/><a class="btn btn-primary" href="#">Reservar<span class="glyphicon glyphicon-chevron-right"></span></a></div></div>'); 
+	var $item = $('<div class="row"><div class="col-md-7"><a href="mostrarInmoble.html?id='+resposta.idVivienda+'"><img class="img-fluid rounded mb-3 mb-md-0" src="'+resposta.imagen+'" alt="Imatge de l\'inmoble amb ID : '+resposta.idVivienda+'"></a></div><div class="col-md-3"><h3>ID : '+resposta.idVivienda+'</h3><p>Tipus : '+resposta.tipo+'</p><p>Ubicació : '+resposta.ubicacion+'</p><p>Superfície : '+resposta.superficie+'</p><p>Preu : '+resposta.precio+'</p><p>Nombre habitacions : '+resposta.numHabitaciones+'</p></div><div class="col-md-2" style="padding-top:40px"><p>Nombre de Banys : '+resposta.numBanios+'</p><p>Extres : '+resposta.extras+'</p><p>Descripció : '+resposta.descripcion+'</p><br/><a class="btn btn-primary" href="#">Reservar<span class="glyphicon glyphicon-chevron-right"></span></a></div></div>'); 
   
 	$data.append($item);
 

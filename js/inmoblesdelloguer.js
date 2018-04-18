@@ -1,4 +1,4 @@
-processarInformacio();
+﻿processarInformacio();
 
 var $data = $('#data');
 var url = 'http://localhost:8080/dawInmoExpress/';
@@ -6,7 +6,7 @@ var url = 'http://localhost:8080/dawInmoExpress/';
 
 function processarInformacio() {
 	$.ajax({
-		url: 'http://localhost:8080/dawInmoExpress/',
+		url: 'http://localhost:8080/dawInmoExpress/inmoble/lloguer',
 		dataType: 'json',
 		beforeSend: function(jqXHR) {
 			jqXHR.overrideMimeType('application/json');

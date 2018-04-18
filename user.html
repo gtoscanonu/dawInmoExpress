@@ -98,37 +98,71 @@
     <!-- Page Content -->
     <div class="container">
 
-      <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">Avís Legal</h1>
+		<!-- Page Heading/Breadcrumbs -->
+		<h1 class="mt-4 mb-3">Log in
+		</h1>
 
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-          <a href="index.html">Pàgina principal</a>
-        </li>
-        <li class="breadcrumb-item active">Avís Legal</li>
-      </ol>
-		</br>
-		<p>L'usuari es compromet a fer un us adequat dels continguts del Web i està obligat a:</p> 
-		<p>(i) Facilitar informacio veraç i exacta sobre les dades sol.licitades en el formulari de registre o de realitzacio de les compres i vendes, i mantenir-les actualitzades 
-			cada vegada que faci us del Web;</p> 
-		<p>(ii) No incorrer en activitats il.licites, il.legals o contraries a la bona fe i a l'ordre public;</p>
-		<p>(iii) No difondre continguts o propaganda de caracter racista, xenofoba, discriminatoria en raó de raça, sexe, ideologia, 
-			religio o de qualsevol forma que atempti contra la moral, l'ordre públic, els drets fonamentals, les llibertats publiques, 
-			l'honor, la intimitat o la imatge de tercers i en general la normativa vigent;</p> 
-		<p>(iv) No provocar danys en els sistemes fisics i logics del Web, dels proveidors de InmoExpress o de terceres persones, ni introduir ni difondre a la xarxa virus informatics o 
-			qualsevol altre sistema físic o lògic que sigui susceptible de provocar els danys anteriorment esmentats;</p> 
-		<p>(v) No utilitzar els continguts del Web i la seva informació per a remetre publicitat, o enviar missatges amb qualsevol 
-			altra fi comercial, ni per a recollir o emmagatzemar dades personals de tercers;</p> 
-		<p>(vi) No intentar accedir o, si escau, 
-			utilitzar els comptes de correu electronic d'altres usuaris i modificar o manipular els seus missatges.
-			InmoExpress es reserva el dret d'efectuar sense previ avis les modificacions que consideri oportunes en el seu Web, 
-			canviant, suprimint o afegint tant els continguts i serveis que es prestin a traves del web com la forma en la 
-			qual apareguin presentats o localitzats al seu portal.</p>
-		</br>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item">
+			  <a href="index.html">Pàgina Principal</a>
+			</li>
+			<li class="breadcrumb-item active">Dades Usuari</li>
+		</ol>
 
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-4 mb-4">
+				</div>
+				<div class="col-lg-4 mb-4">
+				  <!--<div class="card h-100 text-center">
+					<!--<img class="card-img-top" src="img/geovany.jpg" alt="">-->
+					<!--<div class="card-body">-->
+					  <h4 class="card-title">ID d'usuari : </h4><br/>
+						<form name="user" id="userForm" novalidate>
+							<div class="form-group floating-label-form-group control-group controls card-text">
+								<div class="controls">
+									<label for="email">Correu Electrònic</label>
+									<input type="email" class="form-control" placeholder="Correu Electrònic" id="email" required data-validation-required-message="Si us plau introdueix el teu correu electrònic.">
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+
+							<div class="form-group floating-label-form-group controls">
+								<label for="password">Contrasenya</label>
+								<input type="password" class="form-control" placeholder="Contrasenya" id="password" required data-validation-required-message="Si us plau introdueix la teva contrasenya.">
+								<p class="help-block text-danger"></p>
+							</div>
+							
+							<div class="form-group floating-label-form-group controls">
+								<label for="name">Nom i Cognoms</label>
+								<input type="text" class="form-control" placeholder="Nom i Cognoms" id="name" required data-validation-required-message="Si us plau insereix el teu nom i cognoms.">
+								<p class="help-block text-danger"></p>
+							</div>
+							
+							<div class="form-group floating-label-form-group controls">
+								<label for="telefon">Telèfon Mòbil</label>
+								<input type="text" class="form-control" placeholder="Telèfon Mòbil" id="tfmobil" required data-validation-required-message="Si us plau insereix el teu telèfon mòbil.">
+								<p class="help-block text-danger"></p>
+							</div>
+							<hr class="star-primary">
+							<div id="success"></div>
+							<div class="form-group">
+								<button type="button" id="modifyaccount" class="btn btn-warning">Modificar</button>
+								<button type="reset" class="btn btn-danger" data-dismiss="modal">Cancel·lar</button>
+								<button type="button" id="deleteaccount" class="btn btn-link">Esborrar Usuari</button>
+							</div>
+						</form>
+					<!--</div>
+				  </div>-->
+				</div>
+				<div class="col-lg-4 mb-4">
+				</div>
+			</div>
+		</div>
     </div>
     <!-- /.container -->
 
+    <!-- Footer -->
     <footer class="py-3 bg-dark">
       <div class="container">
         <p class="m-0 text-center text-white">Copyright &copy; InmoExpress 2018. Tots els drets reservats  | <a href="legal.html">Avís legal</a></p>
@@ -156,7 +190,11 @@
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
+	<!-- Crypto-js JavaScript -->
+	<script src="js/jquery.md5.js"></script>
+	
 	<!-- Personalised JavaScript -->
+	<script src="js/user.js"></script>
 	<script src="js/session.js"></script>
 
   </body>
