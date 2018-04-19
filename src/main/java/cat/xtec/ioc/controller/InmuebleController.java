@@ -2,8 +2,6 @@ package cat.xtec.ioc.controller;
 
 import cat.xtec.ioc.domain.*;
 import cat.xtec.ioc.repository.InmuebleDAORepository;
-import cat.xtec.ioc.repository.VendedorDAORepository;
-import cat.xtec.ioc.service.InmuebleService;
 import cat.xtec.ioc.service.VendedorDAOService;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -7,7 +7,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import static javax.swing.text.StyleConstants.Size;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -16,7 +15,7 @@ import javax.validation.constraints.Size;
  * @author root
  */
 @Entity
-@Table(name = "Inmueble")
+@Table(name = "inmueble")
 public class Inmueble implements Serializable {
     
     private static long serialVersionUID = 1L;
@@ -65,7 +64,6 @@ public class Inmueble implements Serializable {
     private String descripcion;
     
     @Column(name = "imagen")
-    @Size(max = 250)
     private String imagen;
 
     public Inmueble(){};
