@@ -22,7 +22,7 @@ import org.hibernate.validator.constraints.NotBlank;
  * @author root
  */
 @Entity
-@Table(name = "Vendedor")
+@Table(name = "vendedor")
 public class Vendedor implements Serializable {   
     private static final long serialVersionUID = 1L;
     @Id

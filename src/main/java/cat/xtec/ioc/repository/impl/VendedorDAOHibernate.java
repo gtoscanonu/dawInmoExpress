@@ -1,12 +1,10 @@
 package cat.xtec.ioc.repository.impl;
 
-import cat.xtec.ioc.domain.Inmueble;
 import cat.xtec.ioc.domain.Vendedor;
 import cat.xtec.ioc.repository.VendedorDAORepository;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -56,13 +54,12 @@ public class VendedorDAOHibernate implements VendedorDAORepository {
     }
     
     @Override
-    public Integer validarVendedor(String email) {
+    public Vendedor validarVendedor(String email, String password) {
        Criteria criteria = createEntityCriteria();
        criteria.add(Restrictions.eq("email", email));
+       criteria.add(Restrictions.eq("password", password));
         
-       List<Vendedor> vendedores= (List<Vendedor>) criteria.list();
-
-      return vendedores.size();
+       return (Vendedor) criteria.uniqueResult();
     }
 
     @Override

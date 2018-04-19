@@ -2,7 +2,6 @@
 package cat.xtec.ioc.repository;
 import cat.xtec.ioc.domain.Inmueble;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 /**
  *
