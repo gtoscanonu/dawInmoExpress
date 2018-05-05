@@ -17,5 +17,4 @@ public interface VendedorDAORepository {
     void addVendedor(Vendedor vendedor);
     void updateVendedor(Vendedor vendedor);
     void deleteVendedor(Vendedor vendedor);
-    Vendedor getVendedorInfomation(Integer idVivienda);
 }
