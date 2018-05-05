@@ -62,4 +62,8 @@ public class ControllerRestBusquedas {
         return this.inmuebleService.getQueryCriteria(pMin, pMax, nHab, ubicacion, tipo, anuncio);
 
     }
+   @RequestMapping(value = ("/infovendedor/{idVivienda}"), method =  RequestMethod.GET)
+    public @ResponseBody Vendedor getVendedorInfo(@PathVariable("idVivienda") Integer idVivienda){
+        return this.vendedorDAOService.getVendedorInfomation(idVivienda);
+    } 
 }

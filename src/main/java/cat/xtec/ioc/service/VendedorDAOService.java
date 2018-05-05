@@ -21,4 +21,5 @@ public interface VendedorDAOService {
     void addVendedor(Vendedor vendedor);
     String updateVendedor(Vendedor vendedor);
     void deleteVendedor(Vendedor vendedor);
+    Vendedor getVendedorInfomation(Integer idVivienda);
 }

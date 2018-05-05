@@ -85,6 +85,5 @@ public class VendedorDAOHibernate implements VendedorDAORepository {
        return sessionFactory.getCurrentSession();
     }
 
-    
 
 }
