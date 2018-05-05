@@ -107,4 +107,18 @@ public class InmuebleServiceImpl implements InmuebleService {
         vendedor.setInmuebles(inmuebles2);
         vendedorDAORepository.updateVendedor(vendedor);   
     }
+
+    @Override
+    public Integer getContadorVisitas(Integer idVivienda) {
+        Inmueble inmueble =  inmuebleDAORepository.getInmuebleById(idVivienda);
+        return inmueble.getContadorvisitas();
+    }
+
+    @Override
+    public void setContadorVisitas(Integer idVivienda) {
+        Inmueble inmueble =  inmuebleDAORepository.getInmuebleById(idVivienda);
+        Integer contador= inmueble.getContadorvisitas() + 1;
+        inmueble.setContadorvisitas(contador);
+        updateInmueble(inmueble);;
+    }
 }

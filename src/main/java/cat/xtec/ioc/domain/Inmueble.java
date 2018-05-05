@@ -66,6 +66,10 @@ public class Inmueble implements Serializable {
     @Column(name = "imagen")
     private String imagen;
 
+    @Column(name = "contadorviitas")
+    @NotNull
+    private int contadorvisitas = 0;
+    
     public Inmueble(){};
 
     public Inmueble(Integer idVivienda, String tipo, String ubicacion, float superficie, float precio, int numHabitaciones, int numBanios, Boolean amueblado, String extras, String descripcion, String imagen){
@@ -246,6 +250,20 @@ public class Inmueble implements Serializable {
      */
     public void setAnuncio(String anuncio) {
         this.anuncio = anuncio;
+    }
+
+    /**
+     * @return the contadorvisitas
+     */
+    public int getContadorvisitas() {
+        return contadorvisitas;
+    }
+
+    /**
+     * @param contadorvisitas the contadorvisitas to set
+     */
+    public void setContadorvisitas(int contadorvisitas) {
+        this.contadorvisitas = contadorvisitas;
     }
 
 }

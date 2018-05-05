@@ -136,4 +136,5 @@ public class InmuebleDAOHibernate implements InmuebleDAORepository {
         return getSession().createCriteria(Inmueble.class);
     }
 
+
 }

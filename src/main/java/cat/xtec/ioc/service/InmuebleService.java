@@ -27,5 +27,9 @@ public interface InmuebleService {
     void deleteInmueble(Inmueble inmueble, Integer idVendedor);
     
     void deletefk(Inmueble inmueble, Integer idVendedor);
+    
+    Integer getContadorVisitas(Integer idVivienda);
+    
+    void setContadorVisitas(Integer idVivienda);
 }
 
