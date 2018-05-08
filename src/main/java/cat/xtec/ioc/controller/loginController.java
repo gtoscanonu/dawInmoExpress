@@ -2,6 +2,11 @@ package cat.xtec.ioc.controller;
 
 import cat.xtec.ioc.domain.*;
 import cat.xtec.ioc.service.VendedorDAOService;
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,29 +26,28 @@ public class loginController {
         this.vendedorDAOService=vendedorDAOService;
     }
     
-  /*  
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login() {
-        return "login";
-    }
-
-    @RequestMapping(value = "/loginfailed", method = RequestMethod.GET)
-    public String loginerror(Model model) {
-        model.addAttribute("error", "true");
-        return "login";
-    }
-
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String logout(Model model) {
-        return "login";
-    }
-    
-  */  
-    // login vendedor
+ // login vendedor
     @RequestMapping(value = ("/login"), method = RequestMethod.GET)
     public @ResponseBody
-    Vendedor validarVendedor(@RequestParam("email") String email, @RequestParam("password") String password){
-        return vendedorDAOService.validarVendedor(email, password);
+    Vendedor validarVendedor(HttpServletRequest request, HttpServletResponse response){
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        Cookie ck = new Cookie("email", email);
+        response.addCookie(ck);
+        return vendedorDAOService.validarVendedor(email, password);    
+    }
+  
+    
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public void loginerror(HttpServletRequest request, HttpServletResponse response) {
+        Cookie[] ck=request.getCookies();
+        ck[0].setMaxAge(0);
+         for (Cookie cookie : ck) {
+            cookie.setValue("");
+            cookie.setPath("/");
+            cookie.setMaxAge(0);
+            response.addCookie(cookie);
+        }
     }
     
     //Registrarse Sign-up
@@ -61,5 +65,6 @@ public class loginController {
             return "{\"missatge\" : \"Usuari " + vendedor.getEmail() + " ja registrat anteriorment\"}";
         }
     }
-        
+
+
 }

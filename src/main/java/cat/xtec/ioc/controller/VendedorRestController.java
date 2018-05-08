@@ -5,6 +5,9 @@ import cat.xtec.ioc.service.InmuebleService;
 import cat.xtec.ioc.service.VendedorDAOService;
 import java.io.IOException;
 import java.util.Set;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +38,17 @@ public class VendedorRestController {
     // atributos de 1 vendedor
     //http://localhost:8080/dawInmoExpress/venedor/3
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.GET)
-    public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor){
-        return this.vendedorDAOService.getVendedorByIdVendedor(idVendedor);
+    //public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor){
+    public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor, HttpServletRequest request, HttpServletResponse response){
+        
+        Cookie ck[]=request.getCookies();
+        String email = ck[0].getValue();
+        Vendedor vendedorEmail = vendedorDAOService.getVendedorByEmail(email);
+        if (vendedorEmail.getIdVendedor() == idVendedor){
+            return this.vendedorDAOService.getVendedorByIdVendedor(idVendedor);
+        }else{
+            return null;
+        }  
     }
     
     // Actualizar Vendedor

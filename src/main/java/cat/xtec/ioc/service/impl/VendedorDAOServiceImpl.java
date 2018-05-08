@@ -84,4 +84,9 @@ public class VendedorDAOServiceImpl implements VendedorDAOService {
         }
         return findvendedor;
     }    
+
+    @Override
+    public Vendedor getVendedorByEmail(String email) {
+        return vendedorDAORepository.getVendedorByEmail(email);
+    }
 }

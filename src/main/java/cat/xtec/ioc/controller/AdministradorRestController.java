@@ -3,6 +3,9 @@ import cat.xtec.ioc.domain.*;
 import cat.xtec.ioc.repository.InmuebleDAORepository;
 import cat.xtec.ioc.service.VendedorDAOService;
 import java.util.List;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -30,8 +33,16 @@ public class AdministradorRestController {
 
     // todos los vendedores
     @RequestMapping( value = "/all", method = RequestMethod.GET)
-    public @ResponseBody List<Vendedor> getAllVendedores() {
-        return this.vendedorDAOService.getAllVendedor();
+    public @ResponseBody List<Vendedor> getAllVendedores(HttpServletRequest request, HttpServletResponse response) {
+        Cookie ck[]=request.getCookies();
+        String email = ck[0].getValue();
+        Vendedor vendedorEmail = vendedorDAOService.getVendedorByEmail(email);
+         if (vendedorEmail.getRol().equalsIgnoreCase("administrador")){
+            return this.vendedorDAOService.getAllVendedor();
+         }else{
+             return null;
+         }
+
     }
     
     // Eliminar Vendedor

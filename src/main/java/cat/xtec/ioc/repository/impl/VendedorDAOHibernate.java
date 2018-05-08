@@ -42,6 +42,13 @@ public class VendedorDAOHibernate implements VendedorDAORepository {
         return (Vendedor) criteria.uniqueResult();
     }
     
+    @Override
+    public Vendedor getVendedorByEmail(String email){
+        Criteria criteria = createEntityCriteria();
+        criteria.add(Restrictions.eq("email", email));
+        return (Vendedor) criteria.uniqueResult();
+    }
+    
     @Override 
     public Vendedor loginVendedor(String email){
        Criteria criteria = createEntityCriteria();
