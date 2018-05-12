@@ -8,6 +8,7 @@ import java.util.Set;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,8 +42,8 @@ public class VendedorRestController {
     //public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor){
     public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor, HttpServletRequest request, HttpServletResponse response){
         
-        Cookie ck[]=request.getCookies();
-        String email = ck[0].getValue();
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("email");
         Vendedor vendedorEmail = vendedorDAOService.getVendedorByEmail(email);
         if (vendedorEmail.getIdVendedor() == idVendedor){
             return this.vendedorDAOService.getVendedorByIdVendedor(idVendedor);
@@ -100,33 +101,6 @@ public class VendedorRestController {
 
        return "{\"missatge\" : \"Inmoble registrat correctament\"}";
     } 
-  /*
-    private int queryIdVivienda(int idVendedor){
-       int path = 0;
-        Set<Inmueble> inmuebles = inmuebleService.getAllInmueblesByVendedor(idVendedor);
-        for(Inmueble inmuebleItem : inmuebles){
-            if(inmuebleItem.getIdVivienda() > path){
-                path = inmuebleItem.getIdVivienda();
-            }                
-        }
-        return path;
-   } 
 
-    private String mkdirDirectorio(int idVendedor, int path){ 
-        String vendedorPath = "/home/geovany/NetbeansProyects/IOC_PROYECT/dawInmoExpress/src/main/webapp/WEB-INF/img/vendedores/IdVendedor"+ idVendedor;
-        File vendedorFile = new File (vendedorPath);
-        vendedorFile.mkdir();
-        String pathVivienda = (vendedorPath + "/IdVivienda" + path);
-        File imagenPath = new File (pathVivienda);
-        imagenPath.mkdir();
-        
-        return pathVivienda;
-    }
-    
-    private static void saveBytesToFile(String filePath, byte[] fileBytes) throws IOException {
-        FileOutputStream outputStream = new FileOutputStream(filePath);
-        outputStream.write(fileBytes);
-        outputStream.close();
-    }*/
            
 } 

@@ -2,17 +2,15 @@ package cat.xtec.ioc.controller;
 
 import cat.xtec.ioc.domain.*;
 import cat.xtec.ioc.service.VendedorDAOService;
-import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -32,22 +30,18 @@ public class loginController {
     Vendedor validarVendedor(HttpServletRequest request, HttpServletResponse response){
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        Cookie ck = new Cookie("email", email);
-        response.addCookie(ck);
+        
+        HttpSession session=request.getSession(true);  
+        session.setAttribute("email", email);
+
         return vendedorDAOService.validarVendedor(email, password);    
     }
   
     
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public void loginerror(HttpServletRequest request, HttpServletResponse response) {
-        Cookie[] ck=request.getCookies();
-        ck[0].setMaxAge(0);
-         for (Cookie cookie : ck) {
-            cookie.setValue("");
-            cookie.setPath("/");
-            cookie.setMaxAge(0);
-            response.addCookie(cookie);
-        }
+    public void logout(HttpServletRequest request, HttpServletResponse response) {
+         HttpSession session = request.getSession();
+         session.invalidate();
     }
     
     //Registrarse Sign-up

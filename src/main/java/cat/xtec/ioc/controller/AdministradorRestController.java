@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,8 @@ public class AdministradorRestController {
     // todos los vendedores
     @RequestMapping( value = "/all", method = RequestMethod.GET)
     public @ResponseBody List<Vendedor> getAllVendedores(HttpServletRequest request, HttpServletResponse response) {
-        Cookie ck[]=request.getCookies();
-        String email = ck[0].getValue();
+        HttpSession session = request.getSession();
+        String email = (String) session.getAttribute("email");
         Vendedor vendedorEmail = vendedorDAOService.getVendedorByEmail(email);
          if (vendedorEmail.getRol().equalsIgnoreCase("administrador")){
             return this.vendedorDAOService.getAllVendedor();

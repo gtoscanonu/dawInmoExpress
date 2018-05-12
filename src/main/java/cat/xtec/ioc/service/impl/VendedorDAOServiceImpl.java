@@ -21,11 +21,7 @@ public class VendedorDAOServiceImpl implements VendedorDAOService {
     
     @Autowired
     private InmuebleDAORepository inmuebleDAORepository;
-/*    
-    public VendedorDAOServiceImpl(VendedorDAORepository vendedorDAORepository){
-        this.vendedorDAORepository= vendedorDAORepository;
-    }
-*/
+
     
      @Override
     public List<Vendedor> getAllVendedor() {
@@ -34,7 +30,6 @@ public class VendedorDAOServiceImpl implements VendedorDAOService {
     @Override
     public Vendedor getVendedorByIdVendedor(Integer idVendedor) {
        Vendedor vendedor = vendedorDAORepository.getVendedorByIdVendedor(idVendedor);
-        //vendedor.setPassword("******");
        return vendedor;
     }
 

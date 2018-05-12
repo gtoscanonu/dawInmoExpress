@@ -19,12 +19,7 @@ public class InmuebleServiceImpl implements InmuebleService {
     private InmuebleDAORepository inmuebleDAORepository;
     @Autowired
     private VendedorDAORepository vendedorDAORepository;
-/*    
-    public InmuebleServiceImpl(VendedorDAORepository vendedorDAORepository, InmuebleDAORepository inmuebleDAORepository){
-        this.inmuebleDAORepository=inmuebleDAORepository;
-        this.vendedorDAORepository=vendedorDAORepository;
-    }
-*/
+
     @Override
     public Inmueble getInmuebleById(Integer id_vivienda) {
        return inmuebleDAORepository.getInmuebleById(id_vivienda);
