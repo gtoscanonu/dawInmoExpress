@@ -53,14 +53,16 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Serveis
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="totsinmobles.html">Els nostres inmobles</a>
-                <a class="dropdown-item novisible vendre" href="vendreinmoble.html">Ven el teu inmoble</a>
-                
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">				
+				<a class="dropdown-item bg-light" href="comprarinmoble.html">Compra un inmoble</a>
+				<a class="dropdown-item bg-light" href="llogarinmoble.html">Lloga un inmoble</a>
+				<a class="dropdown-item bg-light" href="intercanviarinmoble.html">Intercanvi d'inmobles</a>
+				<hr class="novisible vendre">
+				<a class="dropdown-item bg-light novisible vendre" href="publicarinmoble.html">Publica un inmoble</a>
               </div>
             </li>
-			<li class="nav-item estadistiques novisible">
-              <a class="nav-link" href="estadistiques.html">Estadistiques</a>
+			<li class="nav-item">
+              <a class="nav-link" href="totsinmobles.html">Cercador d'inmobles</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,6 +115,7 @@
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+		  <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
           <!-- Slide One - Set the background image for this slide in the line below -->
@@ -136,6 +139,13 @@
               <p></p>
             </div>
           </div>
+		  <!-- Slide Four - Set the background image for this slide in the line below -->
+          <div class="carousel-item" style="background-image: url('img/intercanvi.jpg')">
+            <div class="carousel-caption d-none d-md-block">
+              <h3>Intercanvia el teu inmoble temporalment</h3>
+              <p></p>
+            </div>
+          </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -155,37 +165,48 @@
 
       <!-- Marketing Icons Section -->
       <div class="row">
-        <div class="col-lg-4 mb-4">
+        <div class="col-lg-3 mb-3">
           <div class="card h-100">
-            <h4 class="card-header">Compra</h4>
+            <h4 class="card-header">Comprar</h4>
             <div class="card-body">
               <p class="card-text">Troba dins d'una gran selecció d'inmobles aquell que acompleix els teus desitjos i fes-lo teu.</p>
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-center">
               <a href="totsinmobles.html" class="btn btn-primary">Comprar</a>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 mb-4">
-          <div class="card h-100">
-            <h4 class="card-header">Venda</h4>
-            <div class="card-body">
-              <p class="card-text">Fes realitat els somnis d'altres persones realitzant la venda del teu inmoble.</p>
-            </div>
-            <div class="card-footer">
-				<p class="card-text vendre text-center">Has de fer login per aquesta opció.</p>
-              <a href="vendreinmoble.html" class="btn btn-primary vendre novisible">Vendre</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 mb-4">
+        <div class="col-lg-3 mb-3">
           <div class="card h-100">
             <h4 class="card-header">Lloguer</h4>
             <div class="card-body">
               <p class="card-text">Disposem de milers d'inmobles en lloguer. Estem segurs que trobaràs el que més t'agrada. També pots incloure el teu inmoble a llogar</p>
             </div>
-            <div class="card-footer">
+            <div class="card-footer text-center">
               <a href="totsinmobles.html" class="btn btn-primary">Llogar</a>
+            </div>
+          </div>
+        </div>
+		<div class="col-lg-3 mb-3">
+          <div class="card h-100">
+            <h4 class="card-header">Intercanvi</h4>
+            <div class="card-body">
+              <p class="card-text">Fes un intercanvi temporal del teu inmoble. Aprofita per viure i gaudir en un altre indret i permet que els demés també ho puguin fer.</p>
+            </div>
+            <div class="card-footer text-center">
+              <a href="intercanviarinmoble.html" class="btn btn-primary ">Intercanviar</a>
+            </div>
+          </div>
+        </div>
+		<div class="col-lg-3 mb-3">
+          <div class="card h-100">
+            <h4 class="card-header">Publicar</h4>
+            <div class="card-body">
+              <p class="card-text">Fes realitat els somnis d'altres persones realitzant la venda, lloguer o intercanvi del teu inmoble.</p>
+            </div>
+            <div class="card-footer text-center">
+				<p class="card-text vendre">Has de fer login per accedir.</p>
+              <a href="publicarinmoble.html" class="btn btn-primary vendre novisible">Publicar</a>
             </div>
           </div>
         </div>

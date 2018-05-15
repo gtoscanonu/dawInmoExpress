@@ -44,14 +44,16 @@
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Serveis
               </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-                <a class="dropdown-item" href="totsinmobles.html">Els nostres inmobles</a>
-                <a class="dropdown-item novisible vendre" href="vendreinmoble.html">Ven el teu inmoble</a>
-                
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">				
+				<a class="dropdown-item bg-light" href="comprarinmoble.html">Compra un inmoble</a>
+				<a class="dropdown-item bg-light" href="llogarinmoble.html">Lloga un inmoble</a>
+				<a class="dropdown-item bg-light" href="intercanviarinmoble.html">Intercanvi d'inmobles</a>
+				<hr class="novisible vendre">
+				<a class="dropdown-item bg-light novisible vendre" href="publicarinmoble.html">Publica un inmoble</a>
               </div>
             </li>
-			<li class="nav-item estadistiques novisible">
-              <a class="nav-link" href="estadistiques.html">Estadistiques</a>
+			<li class="nav-item">
+              <a class="nav-link" href="totsinmobles.html">Cercador d'inmobles</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,15 +115,16 @@
       </ol>
 	  <br/>
 	  <div class="row cerca">
-			<div  class="col-lg-2">
+			<div  class="col-md-auto">
 				Tipus d'Anunci:<br/>
 				<select id="anunci">
 					<option selected="selected">Tots els tipus</option>
 					<option value="venda">compra</option>
 					<option>lloguer</option>
+					<option>intercanvi</option>
 				</select>
 			</div>
-			<div  class="col-lg-2">
+			<div  class="col-md-auto">
 				Nº d'habitacions:<br/>
 				<select id="nHab">
 					<option selected="selected">1</option>
@@ -132,19 +135,19 @@
 					<option>6</option>
 				</select>
 			</div>
-			<div  class="col-lg-2">
+			<div  class="col-md-auto">
 				Ubicació:<br/>
 				<select id="ubicacio">
 					<option selected="selected">Totes les zones</option>
 				</select>
 			</div>
-			<div  class="col-lg-2 ">
+			<div  class="col-md-auto ">
 				Tipus d'Inmoble:<br/>
 				<select id="tipus">
 					<option selected="selected">Tots els tipus</option>
 				</select>
 			</div>
-			<div  class="col-lg-4">
+			<div  class="col-md-4">
 				Selecciona el preu mínim i màxim:<br/>
 				<b>0€&nbsp;&nbsp;</b> <input id="sli" type="text" class="span2" value="0,250000" /> <b>&nbsp;&nbsp;250M€</b>
 				<span id="sli1CurrentSliderValLabel">Mínim: <span id="sli1SliderVal">0€</span></span> &emsp;&emsp;&emsp;&emsp;&emsp;
@@ -216,7 +219,7 @@
 	<script src="vendor/bootstrap-slider/js/bootstrap-slider.js"></script>
 	
 	<!-- Personalised JavaScript -->
-	<script src="js\dades.js"></script>
+	<script src="js\totsinmobles.js"></script>
 	<script src="js/session.js"></script>
   </body>
 

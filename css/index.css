@@ -1,3 +1,15 @@
+.mover{
+	float:left;
+}
+
+.clear{
+	clear:both;
+}
+
+.abajo{
+	margin-bottom:500px;
+}
+
 .novisible{
 	display:none;
 }

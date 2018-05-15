@@ -28,9 +28,8 @@
   </head>
 
   <body>
-
-    <!-- Navigation -->
-    <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+	<!-- Navigation -->
+	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="index.html"><img src="img/Logo_InmoExpress.png" alt="InmoExpress" width="162" height="42"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -101,23 +100,163 @@
     <div class="container">
 
       <!-- Page Heading/Breadcrumbs -->
-      <h1 class="mt-4 mb-3">Gestió d'usuaris
+      <h1 class="mt-4 mb-3">Venda, lloguer o intercanvi d'un Inmoble
       </h1>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.html">Pàgina Principal</a>
         </li>
-        <li class="breadcrumb-item active">Usuaris</li>
+        <li class="breadcrumb-item active">Publicar</li>
       </ol>
 
-	  <div class="col-lg-12">
-		<div id="data" class="row"></div>
-	  </div>
-		<br/>
-    </div>
-    <!-- /.container -->
+      <div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h2>Dades Inmoble</h2>
+					<hr class="star-primary">
+				</div>
+			</div> 
+			<form action="" name="vendainmoble" id="vendainmoble" method="post" enctype="multipart/form-data" validate>
+				<div class="row">
+					<div class="col-lg-5"></div>
+					<div class="col-lg-2">
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls">
+								<label for="anunci">Tipus d'Anunci:</label>
+								<select id="anunci">
+									<option selected="selected">venda</option>
+									<option>lloguer</option>
+									<option>intercanvi</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-5"></div>
+						
+				</div>
+				<div class="row">
+					<div class="col-lg-2"></div>
+					<div class="col-lg-3">
+						<div class="control-group">
+							<div class="form-group floating-label-form-group controls">
+								<label for="tipus">Tipus (Pis, casa, local...)</label>									
+								<input type="text" class="form-control" placeholder="Tipus" id="tipus" required data-validation-required-message="Casa, pis, local...">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-2"></div>
+						<div class="col-lg-3">
+							<div class="control-group">
+								<div class="form-group floating-label-form-group controls">
+									<label for="ubicacio">Ubicació</label>
+									<input type="text" class="form-control" placeholder="Ubicació" id="ubicacio" required data-validation-required-message="Si us plau insereix la ubicació.">
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+						</div>
+					<div class="col-lg-2"></div>
+				</div>
+					<div class="row">
+						<div class="col-lg-2"></div>
+						<div class="col-lg-3">
+							<div class="control-group">
+								<div class="form-group floating-label-form-group controls">
+									<label for="superficie">Superficie (en m2)</label>
+									<input type="number" class="form-control" placeholder="Superfície" id="superficie" required data-validation-required-message="Si us plau introdueix la superficie.">
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-3">
+							<div class="control-group">
+								<div class="form-group floating-label-form-group controls">
+									<label for="preu">Preu (en €)</label>
+									<input type="number" class="form-control" placeholder="Preu" id="preu" required data-validation-required-message="Si us plau introdueix el preu.">
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2"></div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2"></div>
+						<div class="col-lg-3">
+							<div class="control-group">
+								<div class="form-group floating-label-form-group controls">
+									<label for="habitacions">Nombre d'habitacions</label>
+									<input type="number" class="form-control" placeholder="Nombre d'Habitacions" id="habitacions" required data-validation-required-message="Si us plau introdueix el nombre d'habitacions.">
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-3">
+							<div class="control-group">
+								<div class="form-group floating-label-form-group controls">
+									<label for="banys">Nombre de Banys</label>
+									<input type="number" class="form-control" placeholder="Nombre de banys" id="banys" required data-validation-required-message="Si us plau introdueix el nombre de banys.">
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2"></div>
+					</div>
+					<div class="row">
+						<div class="col-lg-2"></div>
+						<div class="col-lg-3">
+							<div class="control-group">
+								<div class="form-group floating-label-form-group controls">
+									<label for="extres">Extres</label>
+									<textarea class="form-control" placeholder="Extres" id="extres" required data-validation-required-message="Si us plau introdueix els extres."></textarea>
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2"></div>
+						<div class="col-lg-3">
+							<div class="control-group">
+								<div class="form-group floating-label-form-group controls">
+									<label for="descripcio">Descripció</label>
+									<textarea class="form-control" placeholder="Descripció" id="descripcio" required data-validation-required-message="Si us plau introdueix la descripció."></textarea>
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-2"></div>
+					</div>
+					<hr class="star-primary">
+							<div class="row control-group">
+								<div class="form-group col-lg-12 floating-label-form-group controls">
+									<p>Inclou la foto de l'inmoble</p>
+									<input type="file" id="files" name="files[]" multiple />
+									<output id="list"></output>
+									<p class="help-block text-danger"></p>
+								</div>
+							</div>
+							<hr class="star-primary">
+							<br>
+					<div id="success"></div>
+					<div class="row">
+						<div class="form-group col-lg-12">
+							<button type="button" id="createinmoble" class="btn btn-success">Enviar</button>
+							<button type="reset" class="btn btn-primary" data-dismiss="modal">Cancel·lar</button>
+						</div>
+					</div>
+					<hr class="star-primary">
+				</form>
 
+			</div>
+		</div>
+
+
+
+
+    <!-- /.container 
+	<div id="data"></div>-->
+	
     <!-- Footer -->
     <footer class="py-3 bg-dark">
       <div class="container">
@@ -141,15 +280,18 @@
             </li>
         </ul>
       </div>
-
+      <!-- /.container -->
+    </footer>
+	
+	
     <!-- Bootstrap core JavaScript -->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
 	<!-- Personalised JavaScript -->
-	<script src="js/adminmanagement.js"></script>
+	<script src="js/publicarinmoble.js"></script>
 	<script src="js/session.js"></script>
-
+	
   </body>
 
 </html>

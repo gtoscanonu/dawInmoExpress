@@ -1,13 +1,16 @@
+//Primera funcio que s'executa una vegada el document html s'ha carregat
 $(document).ready(mostraDades);
+
+//Establim una variable comptador
 var compt = 0;
 
 /**
-*   realitza la peticio al servidor extern per aconseguir les dades i 
+*   realitza la peticio al servidor extern per aconseguir les dades 
 */
 function mostraDades(){
 
 	$.ajax({
-		url:'http://localhost:8080/dawInmoExpress/administrador/all',
+		url:'http://localhost:8080/dawInmoExpress/administrador/all?token='+sessionStorage.token,
 		success:ompleDades,
 		dataType:"json",
 		error:informaError,
@@ -123,29 +126,28 @@ function informaError(){
 
 function esborrar(id){
 
+	//Mostrem dialeg de confirmacio
 	var opcion = confirm("Estàs segur que vols esborrar el registre amb ID: "+id+" ?");
     if (opcion == true) {
         $.ajax({
-                url : 'http://localhost:8080/dawInmoExpress/administrador/'+ id, 
+                url : 'http://localhost:8080/dawInmoExpress/administrador/'+ id+'?token='+sessionStorage.token, 
                 method : 'delete', 
 
                 success : function(response){
                        //codigo de exito
 					   $('#success').addClass("alert alert-success");
-						$('#success').html('<a class="close" data-dismiss="alert"> × </a>S\'ha esborrat l\'usuari amb ID : '+id);
+						$('#success').html('<a class="close" data-dismiss="alert"> × </a>'+response.missatge);
 					   mostraDades();
                 },
                 error: function(error){
                        //codigo error
 					   $('#success').addClass("alert alert-danger");
 					   $('#success').html('<a class="close" data-dismiss="alert"> × </a><Strong> ERROR EN LA OPERACIÓ! </ Strong>NO s\'ha esborrat l\'usuari');
-					   //alert("ERROR EN LA OPERACIÓ: NO s'ha esborrat l'usuari");
                 }
         });
 	} else {
 		$('#success').addClass("alert alert-info");
 		$('#success').html('<a class="close" data-dismiss="alert"> × </a><Strong> ERROR EN LA OPERACIÓ! </ Strong>Has cancel·lat l\'operació');
-	    //alert("Has cancel·lat l'operació");
 	}
 	
 }

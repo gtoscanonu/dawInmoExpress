@@ -1,15 +1,17 @@
-
+//Al fer click es recuperen les dades del HTML per a crear un immoble
 $('#createinmoble').click(function(){
+	//Si el camp anunci, ubicacio, superficie, preu, habitacions o banys no tenen dades, salta error per que es completin les dades
 	if( $('#anunci').val() == "" || $('#ubicacio').val()=="" || $('#superficie').val() == "" || $('#preu').val() == "" || $('#habitacions').val() == "" || $('#banys').val() == ""){
 		$('#success').addClass("alert alert-danger");
 		$('#success').html('<a class="close" data-dismiss="alert"> × </a><Strong> ERROR! </ Strong>Completa les dades de l\'inmoble si us plau');	
+	
+	//Sino, s'envien les dades
 	}else{
         var data = { tipo : $('#tipus').val(), anuncio : $('#anunci').val(), ubicacion : $('#ubicacio').val(), superficie : $('#superficie').val(), precio : $('#preu').val(), numHabitaciones : $('#habitacions').val(), numBanios : $('#banys').val(), extras : $('#extres').val(), descripcion : $('#descripcio').val(), imagen : $('.thumb').attr('src') };
         $.ajax({
-                url : 'http://localhost:8080/dawInmoExpress/venedor/' + sessionStorage.getItem("idvendedor") + '/inmoble/nouInmoble',
+                url : 'http://localhost:8080/dawInmoExpress/venedor/' + sessionStorage.getItem("idvendedor") + '/inmoble/nouInmoble?token='+sessionStorage.token,
                 data : JSON.stringify(data), 
                 method : 'post',
-				//enctype : 'multipart/form-data',
                 dataType : 'json',
 				headers: { 
 					'Accept': 'application/json',
@@ -19,6 +21,7 @@ $('#createinmoble').click(function(){
                        //codigo de exito
 					   $('#success').addClass("alert alert-success");
 						$('#success').html('<a class="close" data-dismiss="alert"> × </a>'+response.missatge);
+						//Esperem 3 s i redirigim a la pàgina de meusinmobles.html del venedor
 					   setTimeout(function(){location.replace('meusinmobles.html?id='+sessionStorage.getItem("idvendedor"))},3000);
                 },
                 error: function(error){
@@ -30,6 +33,8 @@ $('#createinmoble').click(function(){
 	}
 });
 
+
+//Funcio per obtenir els arxius d'imatges que es pugen al servidor des del client
 function handleFileSelect(evt) {
     var files = evt.target.files; // FileList object
 
