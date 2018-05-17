@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * Definimos el controller ControllerRestBusquedas con servicios de búsquedas de inmuebles y filtros.
+ */
 
 @Controller
 @RequestMapping("/")
@@ -29,28 +32,50 @@ public class ControllerRestBusquedas {
         this.inmuebleService=inmuebleService;
     }
     
-    //Todos los inmuebles 
+    /**
+    * Servicio que devuelve la lista de todos los inmuebles de todos los usuarios
+     * @return lista de todos los inmuebles de todos los usuarios
+    */
+
     @RequestMapping(method =  RequestMethod.GET)
     public @ResponseBody List<Inmueble> getAllInmuebles(){
         return this.inmuebleService.getAllInmuebles();
     }
     
-    // Atributos de un inmueble
+    /**
+    * Servicio que devuelve los atributos de un inmueble
+     * @param idVivienda
+     * @return un json son los atributos de un inmueble
+    */
+
     @RequestMapping(value = ("/{idVivienda}"), method =  RequestMethod.GET)
     public @ResponseBody Inmueble getInmuebleById(@PathVariable("idVivienda") Integer idVivienda){
         return this.inmuebleService.getInmuebleById(idVivienda);
     }
     
-    // Inmuebles por tipo de anuncio recibo el anuncio de inmueble en la url http://localhost:8080/dawInmoExpress/venta
+    /**
+    * Servicio que devuelve la lista de los inmuebles de un determinado anuncio.
+     * @param anuncio
+     * @return  devuelve la lista de los inmuebles de un determinado anuncio.
+    */
+    
     @RequestMapping(value = ("/inmoble/{anuncio}"), method = RequestMethod.GET)
     public @ResponseBody List<Inmueble> getInmueblesByAnuncio(@PathVariable("anuncio") String anuncio){
         return this.inmuebleService.getInmueblesByAnuncio(anuncio);
     }
     
-    // Obtener búsqueda (recibimos precio min, precio max, numHabitaciones 1 o +2, ubicación, tipo)
-    // Se debe enviar un valor por defecto para cada parámetro
+    /**
+    * Servicio que devuelve la lista de los inmuebles de un filtro de búsqueda
+     * @param pMin
+     * @param pMax
+     * @param nHab
+     * @param ubicacion
+     * @param tipo
+     * @param anuncio
+     * @return la lista de los inmuebles de un filtro de búsqueda
+    */
+    
     @RequestMapping(value = ("/inmoble/filtre"), method = RequestMethod.GET)
-
     public @ResponseBody List<Inmueble> getCriterya(
             @RequestParam("pMin") float pMin,
             @RequestParam("pMax") float pMax,
@@ -62,6 +87,12 @@ public class ControllerRestBusquedas {
         return this.inmuebleService.getQueryCriteria(pMin, pMax, nHab, ubicacion, tipo, anuncio);
 
     }
+    
+    /**
+    * Servicio que devuelve la información del vendedor de una vivienda
+     * @param idVivienda
+     * @return Un json con los datos de un vendedor
+    */ 
    @RequestMapping(value = ("/infovendedor/{idVivienda}"), method =  RequestMethod.GET)
     public @ResponseBody Vendedor getVendedorInfo(@PathVariable("idVivienda") Integer idVivienda){
         return this.vendedorDAOService.getVendedorInfomation(idVivienda);

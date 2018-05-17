@@ -5,9 +5,11 @@ import cat.xtec.ioc.domain.Vendedor;
 import java.util.List;
 
 /**
- *
- * @author root
+ * Interface VendedorDAORepository define los métodos que implementará la clase VendedorDAOHibernate
+ * Mediante esta interface podemos separar la especificación de los métodos de la implementación de ellos
+ * @author: root
  */
+
 public interface VendedorDAORepository {
     List<Vendedor> getAllVendedor();
     Vendedor getVendedorByIdVendedor(Integer idVendedor);

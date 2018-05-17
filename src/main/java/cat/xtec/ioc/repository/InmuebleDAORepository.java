@@ -3,10 +3,13 @@ package cat.xtec.ioc.repository;
 import cat.xtec.ioc.domain.Inmueble;
 import java.util.List;
 import java.util.Set;
+
 /**
- *
- * @author root
+ * Interface InmuebleDAORepository define los métodos que implementará la clase InmuebleDAOHibernate
+ * Mediante esta interface podemos separar la especificación de los métodos de la implementación de ellos
+ * @author: root
  */
+
 public interface InmuebleDAORepository {
     
     Inmueble getInmuebleById(Integer id_vivienda);

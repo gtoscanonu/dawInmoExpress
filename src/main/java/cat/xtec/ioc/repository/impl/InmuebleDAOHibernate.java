@@ -15,6 +15,14 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * La clase InmuebleDAOHibernate es la implementación de la interface InmuebleDAORepository.
+ * Cada método realiza una consulta en la BD para ello utilizamos la clase SessionFactory y la clase Criteria.
+ * @author: root
+ */
+
+ 
+
 @Transactional
 @Repository
 public class InmuebleDAOHibernate implements InmuebleDAORepository {

@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Set;
 
 /**
- *
- * @author root
+ * Interface InmuebleService define los métodos que implementará la clase InmuebleServiceImpl
+ * Mediante esta interface podemos separar la especificación de los métodos de la implementación de ellos
+ * @author: root
  */
+
 public interface InmuebleService {
     
     Inmueble getInmuebleById(Integer id_vivienda);

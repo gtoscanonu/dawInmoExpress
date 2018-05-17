@@ -11,9 +11,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 /**
- *
- * @author root
+ * Definimos la clase Inmueble
+ * Los atributos son: idVivienda, Tipo de inmueble, tipo de anuncio, ubicación, superficie, numHabitaciones, numBanios, extras, descripción, imagen,  contador de visitas
+ * La anotación @Entity para decirle al JPA que es una entidad y deberá ser administrda por el EntityManager
+ * La anotación @Table indica el nombre de la tabla a la que está ligada la clase 
  */
+
 @Entity
 @Table(name = "inmueble")
 public class Inmueble implements Serializable {
@@ -60,7 +63,6 @@ public class Inmueble implements Serializable {
     private String extras;
     
     @Column(name = "Descripcion")
-    @Size(max = 100)
     private String descripcion;
     
     @Column(name = "imagen")
@@ -70,7 +72,11 @@ public class Inmueble implements Serializable {
     @NotNull
     private int contadorvisitas = 0;
     
+/**
+* Constructor de la clase de inmueble, no recibe parámetros
+*/
     public Inmueble(){};
+
 
     public Inmueble(Integer idVivienda, String tipo, String ubicacion, float superficie, float precio, int numHabitaciones, int numBanios, Boolean amueblado, String extras, String descripcion, String imagen){
         this.idVivienda=idVivienda;
@@ -183,14 +189,14 @@ public class Inmueble implements Serializable {
     }
 
     /**
-     * @return the numBaños
+     * @return the numBanios
      */
     public int getNumBanios() {
         return numBanios;
     }
 
     /**
-     * @param numBaños the numBaños to set
+     * @param numBanios the numBaños to set
      */
     public void setNumBanios(int numBanios) {
         this.numBanios = numBanios;

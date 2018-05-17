@@ -13,13 +13,18 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Set;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+
 /**
- *
- * @author root
+ * Definimos la clase Vendedor
+ * Los atributos de la clase vendedor son: idVendedor, nombre, mail, password, telefono, rol 
+ * La anotación @Entity para decirle al JPA que es una entidad y deberá ser administrda por el EntityManager
+ * La anotación @Table indica el nombre de la tabla a la que está ligada la clase 
  */
+
 @Entity
 @Table(name = "vendedor")
 public class Vendedor implements Serializable {   
@@ -58,15 +63,11 @@ public class Vendedor implements Serializable {
     @Column(name = "rol")
     private String rol;
     
+/**
+* Constructor de la clase de vendedor, no recibe parámetros
+*/
     public Vendedor(){}
     
- //   public Vendedor(Integer idVendedor, String nombre, String email, Integer telefono){
- //       this.idVendedor=idVendedor;
- //       this.nombre=nombre;
- //       this.email=email;
- //       this.telefono=telefono;
- //   }
-
 
     /**
      * @return the idUser
@@ -161,4 +162,7 @@ public class Vendedor implements Serializable {
         this.rol = rol;
     }
 
+    public String vendedorInString(Vendedor vendedor){
+        return "\"idVendedor\" : \""+vendedor.getIdVendedor()+"\", \"nombre\" : \""+vendedor.getNombre()+"\", \"email\" : \""+vendedor.getEmail()+"\", \"telefono\" : \""+vendedor.getTelefono()+"\", \"rol\" : \""+vendedor.getRol();
+    }
 }

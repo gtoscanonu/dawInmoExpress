@@ -5,10 +5,9 @@ import cat.xtec.ioc.service.InmuebleService;
 import cat.xtec.ioc.service.VendedorDAOService;
 import java.io.IOException;
 import java.util.Set;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.ws.rs.QueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import utils.Variables;
 
-
+/**
+ * Definimos el controller vendedor con todos los servicios para obtener y actualizar los datos de un vendedor y de un inmueble.
+ */
 
 @Controller
 @RequestMapping("/venedor")
@@ -29,6 +31,9 @@ public class VendedorRestController {
     @Autowired
     InmuebleService inmuebleService;
     
+    Variables variables = new Variables();
+    Vendedor vendedor;
+    
     public VendedorRestController(){}
     
     public VendedorRestController(VendedorDAOService vendedorDAOService, InmuebleService inmuebleService){
@@ -36,71 +41,152 @@ public class VendedorRestController {
         this.inmuebleService=inmuebleService;
     }
 
-    // atributos de 1 vendedor
-    //http://localhost:8080/dawInmoExpress/venedor/3
+    /**
+    * Servicio que devuelve los atributos de un vendedor
+    * 
+     * @param idVendedor
+     * @param token
+     * @param request
+     * @param response
+     * @return devuelve json los atributos de un vendedor
+    */
     @RequestMapping(value = ("/{idVendedor}"), method = RequestMethod.GET)
     //public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor){
-    public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor, HttpServletRequest request, HttpServletResponse response){
-        
-        HttpSession session = request.getSession();
-        String email = (String) session.getAttribute("email");
-        Vendedor vendedorEmail = vendedorDAOService.getVendedorByEmail(email);
-        if (vendedorEmail.getIdVendedor() == idVendedor){
-            return this.vendedorDAOService.getVendedorByIdVendedor(idVendedor);
-        }else{
+    public @ResponseBody Vendedor getVendedorById(@PathVariable("idVendedor") Integer idVendedor, @QueryParam("token") String token, HttpServletRequest request, HttpServletResponse response){
+       if(variables.checkToken(token)){
+           vendedor = this.vendedorDAOService.getVendedorByIdVendedor(variables.getUser(token));
+           if(vendedor.getIdVendedor().equals(idVendedor)){
+                return this.vendedorDAOService.getVendedorByIdVendedor(idVendedor);
+           }else{
+               return null;
+           }
+       }else{
             return null;
-        }  
+       }
     }
     
-    // Actualizar Vendedor
-    //curl -H "Content-Type: application/json" -X PUT -d "{\"nombre\":\"vendedorPrueba\",\"email\":\"inmo@gmail.com\",\"telefono\":\"123123123\",\"password\":\"123123123\",\"rol\":\"administrador\"}" http://localhost:8080/dawInmoExpress/venedor/14/editar
+    /**
+    * Servicio que actualiza los atributos de un vendedor
+     * @param idVendedor
+     * @param token
+     * @param vendedor
+     * @return un String indicando si se ha actualizado los atributos del vendedor
+    */   
     @RequestMapping(value = ("/{idVendedor}/editar"), method = RequestMethod.PUT)
     public @ResponseBody
-    String updateVendedor(@PathVariable("idVendedor") Integer idVendedor,@RequestBody Vendedor vendedor){
-        
-        return this.vendedorDAOService.updateVendedor(vendedor);
+    String updateVendedor(@PathVariable("idVendedor") Integer idVendedor, @QueryParam("token") String token, @RequestBody Vendedor vendedor){
+        if(variables.checkToken(token)){
+            Vendedor vendedorToken = this.vendedorDAOService.getVendedorByIdVendedor(variables.getUser(token));
+           if(vendedorToken.getIdVendedor().equals(idVendedor)){
+                return this.vendedorDAOService.updateVendedor(vendedor);
+           }else{
+               return "{\"missatge\" : \"L'usuari no s'ha modificat per seguretat\"}";
+           }
+            
+        }
+        else{
+            return "{\"missatge\" : \"Token no valid\"}"; 
+        }
     }
      
-    // Todos los inmuebles de un vendedor
-    // http://localhost:8080/dawInmoExpress/venedor/3/inmobles
+    /**
+    * Servicio que devuelve la lista de inmuebles de un vendedor
+     * @param idVendedor
+     * @param token
+     * @return  devuelve la lista de inmuebles de un vendedor
+    */ 
     @RequestMapping(value = ("{idVendedor}/inmobles"), method =  RequestMethod.GET)
-    public @ResponseBody Set<Inmueble> getAllInmueblesByVendedor(@PathVariable("idVendedor") Integer idVendedor){
-        return this.inmuebleService.getAllInmueblesByVendedor(idVendedor);
+    public @ResponseBody Set<Inmueble> getAllInmueblesByVendedor(@PathVariable("idVendedor") Integer idVendedor, @QueryParam("token") String token){
+        if(variables.checkToken(token)){
+            Vendedor vendedor = this.vendedorDAOService.getVendedorByIdVendedor(variables.getUser(token));
+            if(vendedor.getIdVendedor().equals(idVendedor)){
+                return this.inmuebleService.getAllInmueblesByVendedor(idVendedor);
+            }else{
+                return null;
+            }
+        }else{
+            return null;
+        }
     }
     
-    //Eliminar inmueble
-    //curl -H "Content-Type: application/json" -X DELETE http://localhost:8080/dawInmoExpress/venedor/14/inmobles/9
+    /**
+    * Servicio que elimina un inmueble de un determinado vendedor
+     * @param idVendedor
+     * @param idVivienda
+     * @param token
+     * @return Retorna un String con el mensaje si se ha eliminado el inmueble
+    */ 
     @RequestMapping(value = ("{idVendedor}/inmoble/{idVivienda}"), method = RequestMethod.DELETE)
     public @ResponseBody
-     String deleteInmueble(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda){
-        Inmueble inmueble = inmuebleService.getInmuebleById(idVivienda);
-        this.inmuebleService.deletefk(inmueble, idVendedor);
-        this.inmuebleService.deleteInmueble(inmueble, idVendedor);
-        return "{\"missatge\" : \"Usuari eliminat correctament\"}";
+     String deleteInmueble(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda, @QueryParam("token") String token){
+        if(variables.checkToken(token)){
+             vendedor = this.vendedorDAOService.getVendedorByIdVendedor(variables.getUser(token));
+           if(vendedor.getIdVendedor().equals(idVendedor)){
+                Inmueble inmueble = inmuebleService.getInmuebleById(idVivienda);
+                this.inmuebleService.deletefk(inmueble, idVendedor);
+                this.inmuebleService.deleteInmueble(inmueble, idVendedor);
+                return "{\"missatge\" : \"Inmoble eliminat correctament\"}";
+           }else{
+               return "{\"missatge\" : \"Inmoble no eliminat per seguretat\"}";
+           }
+            
+        }else{
+            return "{\"missatge\" : \"Token no valid\"}"; 
+        }
+        
     }
   
-   //Actualizar Inmueble con atributo imagen 
+    /**
+    * Servicio que actualiza los atributos de un inmueble
+     * @param idVendedor
+     * @param idVivienda
+     * @param token
+     * @param inmueble
+     * @return  Retorna un string con el mensaje indicando si se han actualizado los atributos de un inmueble
+    */ 
+     
     @RequestMapping(value = ("{idVendedor}/inmoble/{idVivienda}/editar"), method = RequestMethod.PUT)
     public @ResponseBody
-    String updateInmueble(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda, 
+    String updateInmueble(@PathVariable("idVendedor") Integer idVendedor, @PathVariable("idVivienda") Integer idVivienda, @QueryParam("token") String token, 
             @RequestBody Inmueble inmueble) throws IOException {
         
-        this.inmuebleService.updateInmueble(inmueble);
-        return "{\"missatge\" : \"Inmoble modificat correctament\"}";
+        if(variables.checkToken(token)){
+            vendedor = this.vendedorDAOService.getVendedorByIdVendedor(variables.getUser(token));
+            if(vendedor.getIdVendedor().equals(idVendedor)){
+                this.inmuebleService.updateInmueble(inmueble);
+                return "{\"missatge\" : \"Inmoble modificat correctament\"}";
+            }else{
+                return "{\"missatge\" : \"Inmoble no modificat per seguretat\"}";
+            }
+        }else{
+            return "{\"missatge\" : \"Token no valid\"}"; 
+        }
     }
     
  
 
-    // Crear un inmueble recibiendo una imagen desde el cliente
+    /**
+    * Servicio que crea un inmueble
+     * @param idVendedor
+     * @param token
+     * @param inmueble
+     * @return Retorna un string indicando si se ha creado el inmueble
+    */ 
     @RequestMapping(value = ("{idVendedor}/inmoble/nouInmoble"), method = RequestMethod.POST)
     public @ResponseBody 
-    String createInmueble(@PathVariable("idVendedor") Integer idVendedor, 
+    String createInmueble(@PathVariable("idVendedor") Integer idVendedor, @QueryParam("token") String token, 
             @RequestBody Inmueble inmueble) throws IOException {
         
-        this.inmuebleService.addInmueble(inmueble, idVendedor);
-
-       return "{\"missatge\" : \"Inmoble registrat correctament\"}";
-    } 
-
-           
+        if(variables.checkToken(token)){
+            vendedor = this.vendedorDAOService.getVendedorByIdVendedor(variables.getUser(token));
+            if(vendedor.getIdVendedor().equals(idVendedor)){
+                this.inmuebleService.addInmueble(inmueble, idVendedor);
+                return "{\"missatge\" : \"Inmoble registrat correctament\"}";
+            }else{
+                return "{\"missatge\" : \"Inmoble no registrat per seguretat\"}";
+            }
+        }else{
+            return "{\"missatge\" : \"Token no valid\"}"; 
+        }
+    }      
 } 

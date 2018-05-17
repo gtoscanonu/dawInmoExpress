@@ -10,10 +10,15 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
+/**
+ * La clase VendedorDAOServiceImpl es la implementación de la interface VendedorDAORepository
+ * En esta clase se establece la lógica del programa, 
+ * Primero se consultan los datos de la BD llamando a las funciones de la interface VendedorDAORepository.
+ * Con los datos obtenidos realizamos la lógica y tratamos los datos
+ * @author: root
+ */
 
 @Service
-
 public class VendedorDAOServiceImpl implements VendedorDAOService {
     
     @Autowired
@@ -22,7 +27,6 @@ public class VendedorDAOServiceImpl implements VendedorDAOService {
     @Autowired
     private InmuebleDAORepository inmuebleDAORepository;
 
-    
      @Override
     public List<Vendedor> getAllVendedor() {
         return vendedorDAORepository.getAllVendedor();

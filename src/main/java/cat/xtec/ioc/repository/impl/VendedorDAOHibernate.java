@@ -12,8 +12,9 @@ import javax.transaction.Transactional;
 import java.util.List;
 import org.hibernate.Query;
 /**
- *
- * @author root
+ * La clase VendedorDAOHibernate es la implementación de la interface VendedorDAORepository.
+ * Cada método realiza una consulta en la BD para ello utilizamos la clase SessionFactory y la clase Criteria.
+ * @author: root
  */
 @Transactional
 @Repository

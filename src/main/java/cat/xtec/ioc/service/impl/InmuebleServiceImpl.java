@@ -12,6 +12,14 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * La clase InmuebleServiceImpl es la implementación de la interface InmuebleService.
+ * En esta clase se establece la lógica del programa, 
+ * Primero se consultan los datos de la BD llamando a las funciones de la interface InmuebleDAORepository.
+ * Con los datos obtenidos realizamos la lógica y tratamos los datos
+ * @author: root
+ */
+
 @Service
 public class InmuebleServiceImpl implements InmuebleService {
     
@@ -19,7 +27,12 @@ public class InmuebleServiceImpl implements InmuebleService {
     private InmuebleDAORepository inmuebleDAORepository;
     @Autowired
     private VendedorDAORepository vendedorDAORepository;
-
+/*    
+    public InmuebleServiceImpl(VendedorDAORepository vendedorDAORepository, InmuebleDAORepository inmuebleDAORepository){
+        this.inmuebleDAORepository=inmuebleDAORepository;
+        this.vendedorDAORepository=vendedorDAORepository;
+    }
+*/
     @Override
     public Inmueble getInmuebleById(Integer id_vivienda) {
        return inmuebleDAORepository.getInmuebleById(id_vivienda);

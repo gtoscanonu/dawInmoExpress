@@ -9,9 +9,11 @@ import cat.xtec.ioc.domain.Vendedor;
 import java.util.List;
 
 /**
- *
- * @author root
+ * Interface VendedorDAOService define los métodos que implementará la clase VendedorDAOServiceImpl
+ * Mediante esta interface podemos separar la especificación de los métodos de la implementación de ellos
+ * @author: root
  */
+
 public interface VendedorDAOService {
     List<Vendedor> getAllVendedor();
     Vendedor getVendedorByIdVendedor(Integer idVendedor);
