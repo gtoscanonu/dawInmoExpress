@@ -1,0 +1,8 @@
+utils
+cat.xtec.ioc.service
+cat.xtec.ioc.service.impl
+cat.xtec.ioc.config
+cat.xtec.ioc.domain
+cat.xtec.ioc.controller
+cat.xtec.ioc.repository.impl
+cat.xtec.ioc.repository
